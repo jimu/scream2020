@@ -3,14 +3,34 @@ using UnityEngine.AI;
 
 public class Follow : MonoBehaviour
 {
-    public Transform target;
-    public int mode;
+    public enum Mode { Track, Spy };
+    Transform target;
+    Mode mode;
 
     [SerializeField] Vector3 offset = new Vector3(-1f, 12f, -4f);
 
+    private void Awake()
+    {
+        FollowTarget(GameObject.FindGameObjectWithTag("Player").transform);
+    }
     private void Update()
     {
-        transform.position = target.position + offset;
-        transform.LookAt(target);
+        //Debug.Log("Target.position=" + target.position);
+        if (mode ==  Mode.Spy)
+        {
+            transform.position = target.position + offset;
+            transform.LookAt(target.TransformPoint(Vector3.zero));
+        }
+        else
+        {
+            transform.position = target.position;
+            transform.forward = Vector3.down;
+        }
+    }
+
+    public void FollowTarget( Transform target, Mode mode = Mode.Track)
+    {
+        this.target = target;
+        this.mode = mode;
     }
 }

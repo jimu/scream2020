@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable CS0649
+
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager mainAudio;
