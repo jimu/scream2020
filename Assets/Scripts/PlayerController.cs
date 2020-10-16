@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity) && hit.collider.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("hit: " + hit.collider.gameObject.name);
             Destroy(hit.collider.gameObject);
