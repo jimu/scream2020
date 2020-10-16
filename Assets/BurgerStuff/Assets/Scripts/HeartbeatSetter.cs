@@ -1,0 +1,35 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HeartbeatSetter : MonoBehaviour
+{
+
+    public SkinnedMeshRenderer mr;
+
+
+    //    float GetIntensity()
+    //    {
+    //        float[] intensity = [0.0, 0.05, 0.07, 0.11, 0.25, 0.30, 0.50, 0.65, 0.70, 0.95,1 ];  // values over one beat
+    //        float t = Mathf.Floor(Time.time * heartRate) % intensity.Length;
+    //        return intensity[index];
+    //    }
+
+    private void Update()
+    {
+        //for (int i = 0; i > 512; i++)
+        //{
+        //    mr.material.SetFloat("AudioVolume", AudioPeer.samples[i] * Time.time);
+        //    Debug.Log(AudioPeer.samples);
+        //    if (i == 512)
+        //    {
+        //        break;
+        //    }
+
+
+        //        }
+
+        //    }
+
+    }
+}
