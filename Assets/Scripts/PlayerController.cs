@@ -9,6 +9,13 @@ public class PlayerController : MonoBehaviour
     float playerSpeed = 10.0f;
 
     [SerializeField] GameObject clawMarkPrefab;
+    [SerializeField] GameObject branchObstaclePrefab;
+    public AbilityBase[] abilities;
+
+    private void Start()
+    {
+        abilities = GetComponents<AbilityBase>();
+    }
 
     void Update()
     {
@@ -18,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             Attack();
+        if (Input.GetKeyDown(KeyCode.Q))
+            abilities[0].TriggerAbility();
     }
 
     void Attack()
@@ -36,4 +45,5 @@ public class PlayerController : MonoBehaviour
             Instantiate(clawMarkPrefab, markPos, Quaternion.Euler(90, 0, 0));
         }
     }
+
 }
