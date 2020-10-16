@@ -9,8 +9,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private string bulletFire;
 
-    [SerializeField]
-    private string heartBeatSound;
+    public string heartBeatSound;
 
     public FMOD.Studio.EventInstance bulletFireEvent;
 
