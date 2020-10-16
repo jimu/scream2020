@@ -9,6 +9,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private string bulletFire;
 
+    public string heartBeatSound;
+
     public FMOD.Studio.EventInstance bulletFireEvent;
 
     // Start is called before the first frame update
