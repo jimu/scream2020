@@ -2953,6 +2953,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d086efcaa2fe7147a113ee429559203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clawMarkPrefab: {fileID: 8279097156880769270, guid: eb02b7ff534a9114db103dedc4036420,
+    type: 3}
 --- !u!4 &279008763
 Transform:
   m_ObjectHideFlags: 0
@@ -6787,7 +6789,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 0.95
   m_Text: "Movement\n\nSwitch camera view\n   \u2022  track green camper\n   \u2022 
-    follow player\n\nCycle terror level indicator\n\nGunshot"
+    follow player\n\nCycle terror level indicator\n\nAttack"
 --- !u!222 &715671203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7012,7 +7014,7 @@ MeshCollider:
   m_GameObject: {fileID: 765987093}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -7072,7 +7074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765987093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -10.8, y: 1, z: -10.8}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7435,10 +7437,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'WASD/Arrows/Joystick
 
-    C
+    F2
 
 
-    T
+    F3
 
     SPACE'
 --- !u!222 &1052061022
@@ -9132,7 +9134,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Press H for Help
+  m_Text: 'Press F1 for Help
 
     Credits'
 --- !u!222 &1507410621
@@ -11266,3 +11268,72 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &8279097156263176521
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769160, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279097156880769270, guid: eb02b7ff534a9114db103dedc4036420,
+        type: 3}
+      propertyPath: m_Name
+      value: ClawMark
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb02b7ff534a9114db103dedc4036420, type: 3}
