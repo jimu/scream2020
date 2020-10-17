@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     float playerSpeed = 10.0f;
 
     [SerializeField] GameObject clawMarkPrefab;
-    [SerializeField] GameObject branchObstaclePrefab;
     public AbilityBase[] abilities;
 
     private void Start()
@@ -23,7 +22,7 @@ public class PlayerController : MonoBehaviour
         float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
         transform.Translate(deltaX, 0f, deltaZ);
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Space))
             Attack();
         if (Input.GetKeyDown(KeyCode.Q))
             abilities[0].TriggerAbility();
@@ -33,11 +32,10 @@ public class PlayerController : MonoBehaviour
     {
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity) && hit.collider.gameObject.CompareTag("Enemy"))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
         {
-            GameObject o = hit.collider.gameObject;
-            Enemy enemy = o.GetComponent<Enemy>();
-            enemy.Damage(1);
+            Debug.Log("hit: " + hit.collider.gameObject.name);
+            Destroy(hit.collider.gameObject);
         }
         else
         {
