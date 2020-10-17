@@ -11461,6 +11461,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabX: {fileID: 4184967299415697316, guid: f788672ff8a739b4083cf003c9d11f64, type: 3}
+  prefabPlayerMarker: {fileID: 4184967299415697316, guid: d48427a04a8f48e48999a41029345ae2,
+    type: 3}
 --- !u!114 &1804819621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11738,6 +11740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabX: {fileID: 0}
+  prefabPlayerMarker: {fileID: 0}
 --- !u!114 &1891334436
 MonoBehaviour:
   m_ObjectHideFlags: 0
