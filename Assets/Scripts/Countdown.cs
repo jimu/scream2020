@@ -18,6 +18,6 @@ public class Countdown : MonoBehaviour
     void Update()
     {
         int seconds = startTime - Mathf.FloorToInt(Time.time);
-        timeText.text = seconds / 60 + ":" + seconds % 60;
+        timeText.text = seconds / 60 + ":" + (seconds % 60).ToString().PadLeft(2, '0');
     }
 }
