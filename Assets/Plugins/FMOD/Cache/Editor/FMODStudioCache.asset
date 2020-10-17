@@ -32,7 +32,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: DropBearPanicFMODProj/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637385220624935828
+  lastModified: 637384047060000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -71,7 +71,7 @@ MonoBehaviour:
   Path: event:/Placeholder SFX
   guid: 875645df36eacf4b98d056e8f9881c69
   Banks:
-  - {fileID: -6185919143204646149}
+  - {fileID: -2335941181375137486}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -114,6 +114,41 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-2952086780018304624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/HeartBeat/HeartBeatSpeed
+  m_EditorClassIdentifier: 
+  Name: HeartBeatSpeed
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-2335941181375137486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: DropBearPanicFMODProj/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637384047060000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-555762287526680938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,16 +180,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -6861216009921186616}
-  - {fileID: -6185919143204646149}
+  - {fileID: -2335941181375137486}
   EditorEvents:
   - {fileID: 4888436923462718195}
   - {fileID: -4366133808974536695}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -6185919143204646149}
+  - {fileID: -2335941181375137486}
   StringsBanks:
   - {fileID: -6861216009921186616}
-  stringsBankWriteTime: 637385220624935828
+  stringsBankWriteTime: 637384047060000000
   cacheVersion: 3
 --- !u!114 &623830468562080956
 MonoBehaviour:
@@ -223,12 +258,12 @@ MonoBehaviour:
   Path: event:/HeartBeat
   guid: 369a4875f9c1394ca7c62aa3c9a25868
   Banks:
-  - {fileID: -6185919143204646149}
+  - {fileID: -2335941181375137486}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -555762287526680938}
+  - {fileID: -2952086780018304624}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
