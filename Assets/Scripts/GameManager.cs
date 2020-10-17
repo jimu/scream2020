@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject miniMap;
     [SerializeField] GameObject hud;
     [SerializeField] Text scoreText;
+    List<GameObject> exits;
+    List<Enemy> enemies;
 
     private GameState state = GameState.Playing;
     private int score = 0;
@@ -28,7 +30,7 @@ public class GameManager : MonoBehaviour
     static readonly int MaxTerrorLevel = 5;
 
 
-    private void Start()
+    private void Awake()
     {
         GameManager.instance = this;
         Init();
@@ -39,6 +41,19 @@ public class GameManager : MonoBehaviour
         SetState(GameState.Start);
         SetScore(0);
 
+        exits = new List<GameObject>();
+        foreach (GameObject exit in GameObject.FindGameObjectsWithTag("Exit"))
+            exits.Add(exit);
+
+        enemies = new List<Enemy>();
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Enemy enemy = o.GetComponent<Enemy>();
+            enemies.Add(enemy);
+
+            MoveTo moveTo = o.GetComponent<MoveTo>();
+            moveTo.goal = exits[Random.Range(0, exits.Count)].transform;
+        }
     }
 
     void SetCameraTarget(CameraTarget newCameraTarget)

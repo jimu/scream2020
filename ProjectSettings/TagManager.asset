@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Green
   - Enemy
+  - Exit
   layers:
   - Default
   - TransparentFX

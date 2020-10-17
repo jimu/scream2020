@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-#pragma warning disable 0414
+#pragma warning disable 0414,0649
 
 public class Enemy : MonoBehaviour
 {
