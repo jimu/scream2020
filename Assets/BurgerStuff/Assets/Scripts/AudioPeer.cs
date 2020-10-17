@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [RequireComponent (typeof (AudioSource))]
+
+//Audiopeer takes the spectrum data from the audiosource loaded on the AudioPeer game object and creates 512 samples from that data.
 public class AudioPeer : MonoBehaviour
 {
     AudioSource audioSource;
-    public  float[] samples = new float[512];
+    public float[] samples = new float[512];
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
