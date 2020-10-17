@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+#pragma warning disable 0649
+
 enum GameState { Invalid, Start, Playing, Help, GameOver, HighScores }
 
 public class GameManager : MonoBehaviour
 {
     enum CameraTarget { Player, Green };
 
-    public GameObject helpPanel;
-    public GameObject startPanel;
-    public GameObject miniMap;
-    public GameObject hud;
+    [SerializeField] GameObject helpPanel;
+    [SerializeField] GameObject startPanel;
+    [SerializeField] GameObject miniMap;
+    [SerializeField] GameObject hud;
+    [SerializeField] Text scoreText;
 
     private GameState state = GameState.Playing;
+    private int score = 0;
 
+    static public GameManager instance;
 
 
     CameraTarget cameraTarget = CameraTarget.Player;
@@ -25,7 +30,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        setState(GameState.Start);
+        GameManager.instance = this;
+        Init();
+    }
+
+    private void Init()
+    {
+        SetState(GameState.Start);
+        SetScore(0);
+
     }
 
     void SetCameraTarget(CameraTarget newCameraTarget)
@@ -48,14 +61,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.F1))
-            setState(state == GameState.Help ? GameState.Playing : GameState.Help);
+            SetState(state == GameState.Help ? GameState.Playing : GameState.Help);
         if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.F2))
             SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
         if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F3))
             SetTerrorLevel((terrorLevel + 1) % MaxTerrorLevel);
     }
 
-    void setState(GameState state)
+    void SetState(GameState state)
     {
         //Debug.Log("setState(" + state.ToString() + ")");
         this.state = state;
@@ -70,8 +83,10 @@ public class GameManager : MonoBehaviour
 
     public void OnClosePressed()
     {
-        setState(GameState.Playing);
+        SetState(GameState.Playing);
     }
+
+
     public void OnFullscreenPressed()
     {
         // This should come first?
@@ -79,5 +94,16 @@ public class GameManager : MonoBehaviour
         GetComponent<FullScreen>().ActivateFullscreen(!Screen.fullScreen);
         //GetComponent<FullScreen>().ActivateFullscreen();
         //setState(GameState.Playing);
+    }
+
+    public void AddScore(int value)
+    {
+        SetScore(score + value);
+    }
+
+    private void SetScore(int value)
+    {
+        score = value;
+        scoreText.text = value.ToString();
     }
 }

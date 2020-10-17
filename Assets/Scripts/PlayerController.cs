@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
         transform.Translate(deltaX, 0f, deltaZ);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
             Attack();
         if (Input.GetKeyDown(KeyCode.Q))
             abilities[0].TriggerAbility();
@@ -35,8 +35,9 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity) && hit.collider.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("hit: " + hit.collider.gameObject.name);
-            Destroy(hit.collider.gameObject);
+            GameObject o = hit.collider.gameObject;
+            Enemy enemy = o.GetComponent<Enemy>();
+            enemy.Damage(1);
         }
         else
         {
