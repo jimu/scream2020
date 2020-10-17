@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject startPanel;
     [SerializeField] GameObject miniMap;
     [SerializeField] GameObject hud;
+    [SerializeField] MiniMap2 miniMap2;
     [SerializeField] Text scoreText;
     List<GameObject> exits;
     List<Enemy> enemies;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
             MoveTo moveTo = o.GetComponent<MoveTo>();
             moveTo.goal = exits[Random.Range(0, exits.Count)].transform;
         }
+        miniMap2.Init(enemies); // initialize minimap with our new enemy list
     }
 
     void SetCameraTarget(CameraTarget newCameraTarget)
