@@ -9,9 +9,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private string bulletFire;
 
-    public string heartBeatSound;
+    [FMODUnity.EventRef] public string music;
 
     public FMOD.Studio.EventInstance bulletFireEvent;
+    public FMOD.Studio.EventInstance musicEvent;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,6 +25,12 @@ public class SoundManager : MonoBehaviour
             mainAudio = this;
         DontDestroyOnLoad(gameObject);
 
+    }
+
+    void Start()
+    {
+        musicEvent = FMODUnity.RuntimeManager.CreateInstance(music);
+        musicEvent.start();
 
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HeartbeatSetter : MonoBehaviour
 {
-    public AudioPeer audiopeer;
+    public GetFMODSpectrumData audiopeer;
     public Material shaderMat;
     private float intensity = 0;
     public float minimum = 0;
@@ -26,8 +26,8 @@ public class HeartbeatSetter : MonoBehaviour
         float max = 0;
         for (int i = 0; i < 512; i++)
         {
-            max = Mathf.Max(max, audiopeer.samples[i]);
-            sum += audiopeer.samples[i];
+            max = Mathf.Max(max, audiopeer._samples[i]);
+            sum += audiopeer._samples[i];
         }
 
         Debug.Log(sum);
