@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject clawMarkPrefab;
     [SerializeField] GameObject branchObstaclePrefab;
+    [SerializeField] AudioClip[] attackSounds;
+    int attackSoundIndex = 0;
     public AbilityBase[] abilities;
 
     private void Start()
@@ -44,6 +46,8 @@ public class PlayerController : MonoBehaviour
             Vector3 markPos = transform.position;
             markPos.y = 0.01f;
             Instantiate(clawMarkPrefab, markPos, Quaternion.Euler(90, 0, 0));
+            GameManager.instance.GetComponent<AudioSource>().PlayOneShot(attackSounds[attackSoundIndex]);
+            attackSoundIndex = (attackSoundIndex + 1) % attackSounds.Length;
         }
     }
 

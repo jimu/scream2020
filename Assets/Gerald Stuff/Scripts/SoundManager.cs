@@ -32,8 +32,8 @@ public class SoundManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Space Key Pressed");
-            FMODUnity.RuntimeManager.PlayOneShot(bulletFire);
+            //Debug.Log("Space Key Pressed");
+            //FMODUnity.RuntimeManager.PlayOneShot(bulletFire);
         }
     }
 }
