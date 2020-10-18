@@ -7,6 +7,7 @@ TagManager:
   - Green
   - Enemy
   - Exit
+  - Branch
   layers:
   - Default
   - TransparentFX
