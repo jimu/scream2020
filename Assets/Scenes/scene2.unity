@@ -107,7 +107,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.03
+    agentRadius: 0.1
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -115,7 +115,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.01
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -2818,15 +2818,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 616323699}
     m_Modifications:
-    - target: {fileID: 4448774616168320915, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: goal
-      value: 
-      objectReference: {fileID: 1467390432}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -2842,6 +2837,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: Camper4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}
@@ -3169,7 +3169,7 @@ PrefabInstance:
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -3186,6 +3186,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -15.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: Camper7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}
 --- !u!1001 &231103763
@@ -3195,15 +3200,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 616323699}
     m_Modifications:
-    - target: {fileID: 4448774616168320915, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: goal
-      value: 
-      objectReference: {fileID: 1467390432}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -3219,6 +3219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: Camper8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}
@@ -3254,6 +3259,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: Camper2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}
 --- !u!1001 &238803966
@@ -3288,6 +3298,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: Camper3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}
 --- !u!1001 &239803073
@@ -3310,7 +3325,7 @@ PrefabInstance:
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -3335,7 +3350,7 @@ PrefabInstance:
     - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_Name
-      value: BossCamper
+      value: CamperBoss
       objectReference: {fileID: 0}
     - target: {fileID: 5360087899298570024, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -3511,7 +3526,8 @@ GameObject:
   m_Component:
   - component: {fileID: 279008763}
   - component: {fileID: 279008762}
-  m_Layer: 0
+  - component: {fileID: 279008764}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3533,7 +3549,9 @@ MonoBehaviour:
   playerSpeed: 20
   clawMarkPrefab: {fileID: 8279097156880769270, guid: eb02b7ff534a9114db103dedc4036420,
     type: 3}
+  plumbob: {fileID: 1689411114}
   branchObstaclePrefab: {fileID: 0}
+  sfxSnapToTarget: {fileID: 8300000, guid: 50845f01525876e488bc9f7776208b74, type: 3}
   attackSounds:
   - {fileID: 8300000, guid: be44bb13501fca34cae869ae0d74860b, type: 3}
   - {fileID: 8300000, guid: 47a092385b9f53c419631fe48016b204, type: 3}
@@ -3557,6 +3575,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &279008764
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279008761}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.4
+  m_Center: {x: 0, y: -16, z: 0}
 --- !u!1 &354578656
 GameObject:
   m_ObjectHideFlags: 0
@@ -6238,6 +6269,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &560004187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+    type: 3}
+  m_PrefabInstance: {fileID: 238803966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &560004194
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560004187}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &563982831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7715921658158249617, guid: 232b88dbeaecb2445a7d5cdb78345645,
@@ -6575,12 +6628,12 @@ Transform:
   - {fileID: 363638435}
   - {fileID: 1954573844}
   - {fileID: 1034270785}
-  - {fileID: 1134954664}
-  - {fileID: 1729323074}
   - {fileID: 2123599491}
   - {fileID: 1122070465}
   - {fileID: 873035190}
   - {fileID: 80179616}
+  - {fileID: 1134954664}
+  - {fileID: 1729323074}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7269,7 +7322,7 @@ PrefabInstance:
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -7285,6 +7338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: Camper5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}
@@ -11164,7 +11222,7 @@ PrefabInstance:
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -11180,6 +11238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: Camper6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}
@@ -11357,6 +11420,98 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687188992}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1689411114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1689411116}
+  - component: {fileID: 1689411115}
+  m_Layer: 0
+  m_Name: Plumbob
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!108 &1689411115
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689411114}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 222
+  m_Range: 2
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &1689411116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689411114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1729323074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
@@ -13507,7 +13662,7 @@ PrefabInstance:
     - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_Name
-      value: Camper
+      value: Camper1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde0e15ffdb1564c8b5c2a90da9f246, type: 3}

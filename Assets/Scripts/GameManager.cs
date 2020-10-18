@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     List<GameObject> exits;
     List<Enemy> enemies;
 
+    AudioSource audioSource;
+
     private GameState state = GameState.Playing;
     private int score = 0;
 
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameManager.instance = this;
+        audioSource = GetComponent<AudioSource>();
         Init();
     }
 
@@ -58,6 +61,11 @@ public class GameManager : MonoBehaviour
         miniMap2.Init(enemies); // initialize minimap with our new enemy list
     }
 
+
+    public void PlayOneShot(AudioClip audioClip)
+    {
+        audioSource.PlayOneShot(audioClip);
+    }
     void SetCameraTarget(CameraTarget newCameraTarget)
     {
         cameraTarget = newCameraTarget;
