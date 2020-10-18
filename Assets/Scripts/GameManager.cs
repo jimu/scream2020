@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     List<GameObject> exits;
     List<Enemy> enemies;
+    [SerializeField] GameObject debugPanel;
 
     AudioSource audioSource;
 
@@ -92,16 +94,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape) )
             SetState(state == GameState.Help ? GameState.Playing : GameState.Help);
         if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.F2))
             SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
         if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F3))
             SetTerrorLevel((terrorLevel + 1) % MaxTerrorLevel);
+        if (Input.GetKeyDown(KeyCode.F1))
+            debugPanel.SetActive(!debugPanel.activeSelf);
         if (Input.GetKeyDown(KeyCode.F4))
             CycleBorderGraphic();
         if (Input.GetKeyDown(KeyCode.F5))
             CycleCamperModel();
+        if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Plus))
+            IncrementFOV(5);
+        if (Input.GetKeyDown(KeyCode.Minus))
+            IncrementFOV(-5);
     }
     void CycleCamperModel()
     {
@@ -165,4 +173,10 @@ public class GameManager : MonoBehaviour
         score = value;
         scoreText.text = value.ToString();
     }
+
+    void IncrementFOV(int value)
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView += value;
+    }
+
 }
