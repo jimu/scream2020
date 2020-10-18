@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5360087899298570024}
   - component: {fileID: -5177045014484552893}
   m_Layer: 0
-  m_Name: Camper
+  m_Name: CamperHobo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,10 +31,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4448774616168320936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 378640819}
+  - {fileID: 378665237}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,11 +221,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 460992, guid: 260bc92b4025b7a4f98140a34d1af612, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b4587275bd8858843b068385a1cb3677, type: 3}
---- !u!4 &378640819 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 260bc92b4025b7a4f98140a34d1af612, type: 3}
+--- !u!4 &378665237 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 485478, guid: b4587275bd8858843b068385a1cb3677,
+  m_CorrespondingSourceObject: {fileID: 460992, guid: 260bc92b4025b7a4f98140a34d1af612,
     type: 3}
   m_PrefabInstance: {fileID: 378991061}
   m_PrefabAsset: {fileID: 0}

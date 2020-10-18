@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     AudioSource audioSource;
 
+    // Playtesting
+    bool useCylinder = false;
+
     private GameState state = GameState.Playing;
     private int score = 0;
 
@@ -97,6 +100,22 @@ public class GameManager : MonoBehaviour
             SetTerrorLevel((terrorLevel + 1) % MaxTerrorLevel);
         if (Input.GetKeyDown(KeyCode.F4))
             CycleBorderGraphic();
+        if (Input.GetKeyDown(KeyCode.F5))
+            CycleCamperModel();
+    }
+    void CycleCamperModel()
+    {
+        useCylinder = !useCylinder;
+        foreach (Enemy e in enemies)
+        {
+            if (e.gameObject.transform.childCount > 0)
+            {
+                GameObject child = e.gameObject.transform.GetChild(0).gameObject;
+                child.SetActive(!useCylinder);
+                child.GetComponent<Animator>().SetBool("Death", e.health < 1);
+            }
+            e.gameObject.GetComponent<MeshRenderer>().enabled = useCylinder;
+        }
     }
 
     void CycleBorderGraphic()
@@ -109,6 +128,7 @@ public class GameManager : MonoBehaviour
 
     void SetState(GameState state)
     {
+
         //Debug.Log("setState(" + state.ToString() + ")");
         this.state = state;
 
