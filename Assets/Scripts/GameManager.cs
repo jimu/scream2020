@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 #pragma warning disable 0649
@@ -110,6 +111,8 @@ public class GameManager : MonoBehaviour
             IncrementFOV(5);
         if (Input.GetKeyDown(KeyCode.Minus))
             IncrementFOV(-5);
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     void CycleCamperModel()
     {

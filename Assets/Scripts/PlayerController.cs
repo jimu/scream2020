@@ -44,14 +44,21 @@ public class PlayerController : MonoBehaviour
         {
             GameObject o = hit.collider.gameObject;
             if (o.CompareTag("Enemy"))
-                o.GetComponent<Enemy>().Damage(2);
+                DamageEnemyObject(o, 2);
             else if (o.CompareTag("Branch"))
                 o.GetComponent<Branch>().Block();
             else if (closestObject != null)
-                closestObject.GetComponent<Enemy>()?.Damage(1);
+                DamageEnemyObject(closestObject, 1);
             else
                 AttackMissed();
         }
+    }
+
+    void DamageEnemyObject(GameObject enemyObject, int hits)
+    {
+
+        enemyObject.GetComponent<Enemy>()?.Damage(hits);
+        FindClosestEnemy();
     }
 
     void AttackMissed()

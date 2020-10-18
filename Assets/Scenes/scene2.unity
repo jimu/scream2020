@@ -9420,6 +9420,7 @@ GameObject:
   - component: {fileID: 1095210176}
   - component: {fileID: 1095210177}
   - component: {fileID: 1095210173}
+  - component: {fileID: 1095210178}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9585,6 +9586,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1095210178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095210172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81fb1862a70af94fb8b8935d768aeb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1122070465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
@@ -11009,7 +11022,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Press F1 for Help
+  m_Text: 'Press H for Help
 
     Credits'
 --- !u!222 &1507410621
@@ -13114,8 +13127,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "F1 - Toggle help\nESC - Pause\nF3 - Cycle terror\nF4 - Cycle border\nF5
-    - Cycle camper models\n+/- - Camera FoV \xB15"
+  m_Text: "F1 - Toggle help\nESC - Pause\nR - Restart\nF3 - Cycle terror\nF4 - Cycle
+    border\nF5 - Cycle camper models\n+/- - Camera FoV \xB15"
 --- !u!222 &1868770918
 CanvasRenderer:
   m_ObjectHideFlags: 0

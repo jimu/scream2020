@@ -10,7 +10,10 @@ public class SupressBrowserDefaults : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
+        InstallPreventDefaultF1();
     }
+
+    /*
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -19,6 +22,7 @@ public class SupressBrowserDefaults : MonoBehaviour
             InstallPreventDefaultF1();
         }
     }
+    */
 
     public void InstallPreventDefaultF1()
     {
