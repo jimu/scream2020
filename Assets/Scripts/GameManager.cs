@@ -92,6 +92,11 @@ public class GameManager : MonoBehaviour
         GameObject.Find("TerrorMeter").GetComponent<TerrorMeter>().Set(terrorLevel);
     }
 
+    public int GetTerrorLevel()
+    {
+        return terrorLevel;
+    }
+
     // Update is called once per frame
     void Update()
     {
