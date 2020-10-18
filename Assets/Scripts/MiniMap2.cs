@@ -17,7 +17,7 @@ public class MiniMap2 : MonoBehaviour
     {
         this.enemies = enemies;
         poolX = new RectTransform[enemies.Count];
-        for(int i = 0; i< enemies.Count; ++i)
+        for(int i = 0; i < enemies.Count; ++i)
             poolX[i] = Instantiate(prefabX, transform).GetComponent<RectTransform>();
 
         playerMarker = Instantiate(prefabPlayerMarker, transform).GetComponent<RectTransform>();
@@ -33,6 +33,7 @@ public class MiniMap2 : MonoBehaviour
             Vector3 pos = enemy.gameObject.transform.position * 1.05f;
             //map xz from -90,90 to 90,-90 to 
 
+            poolX[i].gameObject.SetActive(enemy.health > 0); // TODO: delete enemies and markers if dead
             poolX[i].anchoredPosition = new Vector2(pos.x + 5 , pos.z);
             i++;
         }
