@@ -3530,6 +3530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d086efcaa2fe7147a113ee429559203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeed: 20
   clawMarkPrefab: {fileID: 8279097156880769270, guid: eb02b7ff534a9114db103dedc4036420,
     type: 3}
   branchObstaclePrefab: {fileID: 0}

@@ -6,7 +6,7 @@ using UnityEngine;
 #pragma warning disable 0649
 public class PlayerController : MonoBehaviour
 {
-    float playerSpeed = 10.0f;
+    [SerializeField] float playerSpeed = 20.0f;
 
     [SerializeField] GameObject clawMarkPrefab;
     [SerializeField] GameObject branchObstaclePrefab;
