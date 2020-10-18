@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject hud;
     [SerializeField] MiniMap2 miniMap2;
     [SerializeField] Text scoreText;
+    [SerializeField] Sprite[] borderGraphics;
+    int currentBorderGraphic = 0;
+    [SerializeField] Image borderGraphic;
+
     List<GameObject> exits;
     List<Enemy> enemies;
 
@@ -91,6 +95,16 @@ public class GameManager : MonoBehaviour
             SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
         if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F3))
             SetTerrorLevel((terrorLevel + 1) % MaxTerrorLevel);
+        if (Input.GetKeyDown(KeyCode.F4))
+            CycleBorderGraphic();
+    }
+
+    void CycleBorderGraphic()
+    {
+        currentBorderGraphic = (currentBorderGraphic + 1) % (borderGraphics.Length + 1);
+        borderGraphic.enabled = currentBorderGraphic < borderGraphics.Length;
+        if (currentBorderGraphic < borderGraphics.Length)
+            borderGraphic.sprite = borderGraphics[currentBorderGraphic];
     }
 
     void SetState(GameState state)
@@ -115,7 +129,7 @@ public class GameManager : MonoBehaviour
     public void OnFullscreenPressed()
     {
         // This should come first?
-        GameObject.Find("FullScreenButtonText").GetComponent<Text>().text = Screen.fullScreen ? "Windowed" : "Fullscreen";
+        GameObject.Find("FullScreenButtonText").GetComponent<Text>().text = Screen.fullScreen ?  "Fullscreen" : "Windowed";
         GetComponent<FullScreen>().ActivateFullscreen(!Screen.fullScreen);
         //GetComponent<FullScreen>().ActivateFullscreen();
         //setState(GameState.Playing);
