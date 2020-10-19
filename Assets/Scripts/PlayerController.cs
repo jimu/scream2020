@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject o = hit.collider.gameObject;
             Enemy enemy = o.GetComponent<Enemy>();
-            enemy.Damage(1);
+           // enemy.Damage(1);
         }
         else
         {

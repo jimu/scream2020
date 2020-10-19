@@ -6,6 +6,7 @@ using UnityEngine;
 public class HeartbeatSetter : MonoBehaviour
 {
     public GetFMODSpectrumData audiopeer;
+    public AudioPeer audioPeer;
     public Material shaderMat;
     private float intensity = 0;
     public float minimum = 0;
@@ -14,7 +15,6 @@ public class HeartbeatSetter : MonoBehaviour
 
     private void Start()
     {
-
         shaderMat.SetFloat("Vector1_9D18033A", intensity * Time.time);
     }
 

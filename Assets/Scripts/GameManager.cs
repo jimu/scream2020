@@ -11,14 +11,15 @@ public class GameManager : MonoBehaviour
 {
     enum CameraTarget { Player, Green };
 
-    [SerializeField] GameObject helpPanel;
-    [SerializeField] GameObject startPanel;
+   // [SerializeField] GameObject helpPanel;
+   // [SerializeField] GameObject startPanel;
     [SerializeField] GameObject miniMap;
     [SerializeField] GameObject hud;
     [SerializeField] MiniMap2 miniMap2;
     [SerializeField] Text scoreText;
-    List<GameObject> exits;
-    List<Enemy> enemies;
+    [SerializeField] List<GameObject> exits;
+    [SerializeField] PredatorVision predatorVision;
+    public List<Enemy> enemies;
 
     private GameState state = GameState.Playing;
     private int score = 0;
@@ -33,8 +34,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
         GameManager.instance = this;
         Init();
+        predatorVision = GetComponent<PredatorVision>();
     }
 
     private void Init()
@@ -42,9 +45,9 @@ public class GameManager : MonoBehaviour
         SetState(GameState.Start);
         SetScore(0);
 
-        exits = new List<GameObject>();
-        foreach (GameObject exit in GameObject.FindGameObjectsWithTag("Exit"))
-            exits.Add(exit);
+        //exits = new List<GameObject>();
+        //foreach (GameObject exit in GameObject.FindGameObjectsWithTag("Exit"))
+        //    exits.Add(exit);
 
         enemies = new List<Enemy>();
         foreach (GameObject o in GameObject.FindGameObjectsWithTag("Enemy"))
@@ -52,10 +55,12 @@ public class GameManager : MonoBehaviour
             Enemy enemy = o.GetComponent<Enemy>();
             enemies.Add(enemy);
 
-            MoveTo moveTo = o.GetComponent<MoveTo>();
-            moveTo.goal = exits[Random.Range(0, exits.Count)].transform;
+           // MoveTo moveTo = o.GetComponent<MoveTo>();
+            //moveTo.goal = exits[Random.Range(0, exits.Count)].transform;
+
         }
-        miniMap2.Init(enemies); // initialize minimap with our new enemy list
+
+        //miniMap2.Init(enemies); // initialize minimap with our new enemy list
     }
 
     void SetCameraTarget(CameraTarget newCameraTarget)
@@ -83,6 +88,10 @@ public class GameManager : MonoBehaviour
             SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
         if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F3))
             SetTerrorLevel((terrorLevel + 1) % MaxTerrorLevel);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            predatorVision.Toggle();
+        }
     }
 
     void SetState(GameState state)
@@ -92,10 +101,10 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = state == GameState.Playing ? 1f : 0f;
 
-        startPanel.SetActive(state == GameState.Start);
-        helpPanel.SetActive(state == GameState.Help);
-        miniMap.SetActive(state == GameState.Playing);
-        hud.SetActive(state == GameState.Playing);
+        //startPanel.SetActive(state == GameState.Start);
+       // helpPanel.SetActive(state == GameState.Help);
+        //miniMap.SetActive(state == GameState.Playing);
+        //hud.SetActive(state == GameState.Playing);
     }
 
     public void OnClosePressed()
@@ -121,6 +130,6 @@ public class GameManager : MonoBehaviour
     private void SetScore(int value)
     {
         score = value;
-        scoreText.text = value.ToString();
+        //scoreText.text = value.ToString();
     }
 }
