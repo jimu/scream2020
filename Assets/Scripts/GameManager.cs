@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -25,10 +26,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image borderGraphic;
 
     List<GameObject> exits;
+    
     List<Enemy> enemies;
+    public Action<Enemy> removeEnemyAction = null;
+
     [SerializeField] GameObject debugPanel;
     [SerializeField] float fovZoomIn  = 60;
     [SerializeField] float fovZoomOut = 90;
+    [SerializeField] GameObject progressBar;
 
     Camera mainCamera;
 
@@ -72,11 +77,16 @@ public class GameManager : MonoBehaviour
             enemies.Add(enemy);
 
             MoveTo moveTo = o.GetComponent<MoveTo>();
-            moveTo.goal = exits[Random.Range(0, exits.Count)].transform;
+            moveTo.goal = exits[UnityEngine.Random.Range(0, exits.Count)].transform;
         }
         miniMap2.Init(enemies); // initialize minimap with our new enemy list
     }
-
+    
+    public void removeEnemy(Enemy enemy)
+    {
+        removeEnemyAction(enemy);
+        enemies.Remove(enemy);
+    }
 
     public void PlayOneShot(AudioClip audioClip)
     {
@@ -138,6 +148,7 @@ public class GameManager : MonoBehaviour
         {
             if (e.gameObject.transform.childCount > 0)
             {
+
                 GameObject child = e.gameObject.transform.GetChild(0).gameObject;
                 child.SetActive(!useCylinder);
                 child.GetComponent<Animator>().SetBool("Death", e.health < 1);
@@ -211,4 +222,15 @@ public class GameManager : MonoBehaviour
             enemy.RecalculateNavigation();
     }
 
+    public void StartProgressBar(float duration)
+    {
+        Debug.Log("StartProgressBar(" + duration + ")");
+        progressBar.SetActive(true);
+        progressBar.GetComponent<ProgressBar>().StartProgress(duration);
+    }
+
+    public void StopProgressBar()
+    {
+        progressBar.SetActive(false);
+    }
 }

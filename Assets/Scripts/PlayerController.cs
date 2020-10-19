@@ -12,10 +12,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject plumbob;
     [SerializeField] GameObject logObstaclePrefab;
     [SerializeField] AudioClip sfxSnapToTarget;
+    [SerializeField] AudioClip sfxLooting;
+    [SerializeField] AudioClip sfxLootComplete;
     [SerializeField] AudioClip[] attackSounds;
     int attackSoundIndex = 0;
+    
+    // Looting
+    bool isLooting = false;
+    [SerializeField] float lootDuration;
+    float lootFinishTime;
+    GameObject enemyBeingLooted;
+
     List<GameObject> nearbyEnemies;
     GameObject closestObject = null;
+
+
 
     public AbilityBase[] abilities;
 
@@ -24,7 +35,9 @@ public class PlayerController : MonoBehaviour
     {
         abilities = GetComponents<AbilityBase>();
         nearbyEnemies = new List<GameObject>();
+        GameManager.instance.removeEnemyAction += removeNearbyEnemy;
     }
+
 
     void Update()
     {
@@ -32,7 +45,7 @@ public class PlayerController : MonoBehaviour
         float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
         transform.Translate(deltaX, 0f, deltaZ);
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Button0"))
+        if (Input.GetKeyDown( KeyCode.Space) || Input.GetButtonDown("Button0"))
             OnInteractButtonPressed();
         if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button1"))
             OnLureButtonPressed();
@@ -42,6 +55,20 @@ public class PlayerController : MonoBehaviour
             OnTotemButtonPressed();
         if (Input.GetKeyDown(KeyCode.Q))
             abilities[0].TriggerAbility();
+
+        if (isLooting)
+        {
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Button0"))
+                EndLooting();
+            if (Time.time > lootFinishTime)
+            {
+                GameManager.instance.PlayOneShot(sfxLootComplete);
+                EndLooting();
+                Debug.Log("Got a totem");
+                Destroy(enemyBeingLooted);
+                enemyBeingLooted = null;
+            }
+        }
     }
     void Interact()
     {
@@ -49,8 +76,11 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
         {
             GameObject o = hit.collider.gameObject;
+            Debug.Log("Hit: " + o.name);
             if (o.CompareTag("Enemy"))
                 DamageEnemyObject(o, 2);
+            else if (o.CompareTag("Corpse")) 
+                LootCorpse(o);
             else if (o.CompareTag("Log"))
                 o.GetComponent<Log>().Block();
             else if (closestObject != null)
@@ -142,6 +172,12 @@ public class PlayerController : MonoBehaviour
         FindClosestEnemy();
     }
 
+    void removeNearbyEnemy(Enemy enemy)
+    {
+        nearbyEnemies.Remove(enemy.gameObject);
+    }
+
+
 
     public void OnBranchButtonPressed()
     {
@@ -166,4 +202,21 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Lure Pressed!");
     }
 
+
+    public void LootCorpse(GameObject o)
+    {
+        Debug.Log("LootCorpse");
+        isLooting = true;
+        GameManager.instance.PlayOneShot(sfxLooting);
+        enemyBeingLooted = o;
+        lootFinishTime = Time.time + lootDuration;
+        GameManager.instance.StartProgressBar(lootDuration);
+
+    }
+
+    public void EndLooting()
+    {
+        isLooting = false;
+        GameManager.instance.StopProgressBar();
+    }
 }

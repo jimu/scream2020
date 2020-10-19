@@ -57,6 +57,8 @@ public class Enemy : MonoBehaviour
         GameManager.instance.AddScore(value);
         GetComponent<NavMeshAgent>().enabled = false;
         GameManager.instance.GetComponent<AudioSource>().PlayOneShot(sfxDeath);
+        gameObject.tag = "Corpse";
+        GameManager.instance.removeEnemy(this);
 
         if (animator == null)
         {   // cylinder
@@ -67,6 +69,7 @@ public class Enemy : MonoBehaviour
         else
         {
             animator.SetBool("Dead", true);
+            gameObject.GetComponent<CapsuleCollider>().radius = 2.0f;
         }
     }
 
