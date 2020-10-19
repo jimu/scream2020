@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         abilities = GetComponents<AbilityBase>();
         nearbyEnemies = new List<GameObject>();
-        GameManager.instance.removeEnemyAction += removeNearbyEnemy;
+        GameManager.instance.removeEnemyAction += RemoveNearbyEnemy;
     }
 
 
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
         FindClosestEnemy();
     }
 
-    void removeNearbyEnemy(Enemy enemy)
+    void RemoveNearbyEnemy(Enemy enemy)
     {
         nearbyEnemies.Remove(enemy.gameObject);
     }

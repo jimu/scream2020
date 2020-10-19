@@ -15,6 +15,7 @@ public class MiniMap2 : MonoBehaviour
 
     public void Init(List<Enemy> enemies)
     {
+        GameManager.instance.removeEnemyAction += RemoveEnemy;
         this.enemies = enemies;
         poolX = new RectTransform[enemies.Count];
         for(int i = 0; i < enemies.Count; ++i)
@@ -22,6 +23,12 @@ public class MiniMap2 : MonoBehaviour
 
         playerMarker = Instantiate(prefabPlayerMarker, transform).GetComponent<RectTransform>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        enemies.Remove(enemy);
+        Destroy(poolX[enemies.Count].gameObject);
     }
 
     // Update is called once per frame

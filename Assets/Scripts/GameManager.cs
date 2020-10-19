@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
             MoveTo moveTo = o.GetComponent<MoveTo>();
             moveTo.goal = exits[UnityEngine.Random.Range(0, exits.Count)].transform;
         }
-        miniMap2.Init(enemies); // initialize minimap with our new enemy list
+        miniMap2.Init(enemies); // initialize minimap with our new enemy listss
     }
     
     public void removeEnemy(Enemy enemy)
