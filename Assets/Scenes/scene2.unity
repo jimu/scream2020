@@ -9819,6 +9819,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3db9e5afde1233e4cab1fa274235bcfd, type: 3}
   borderGraphic: {fileID: 1386246759}
   debugPanel: {fileID: 1868770915}
+  fovZoomIn: 60
+  fovZoomOut: 90
 --- !u!4 &1095210174
 Transform:
   m_ObjectHideFlags: 0
@@ -13863,8 +13865,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "F1 - Toggle help\nESC - Pause\nR - Restart\nF3 - Cycle terror\nF4 - Cycle
-    border\nF5 - Cycle camper models\n+/- - Camera FoV \xB15"
+  m_Text: "F1 - Toggle help\nESC - Pause\nR - Restart\nSPACE - Interact\nF3 - Cycle
+    terror\nF4 - Cycle border\nF5 - Cycle camper models\n+/- - Camera FoV \xB15\nT
+    = Totem Ability\nB = Branch Ability\n=== JOYPAD ===\nR.Bumper = Zoom\nXYAB =
+    Abilities"
 --- !u!222 &1868770918
 CanvasRenderer:
   m_ObjectHideFlags: 0
