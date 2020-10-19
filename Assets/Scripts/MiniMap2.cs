@@ -37,11 +37,12 @@ public class MiniMap2 : MonoBehaviour
         int i = 0;
         foreach(Enemy enemy in enemies)
         {
-            Vector3 pos = enemy.gameObject.transform.position * 1.05f;
+            //Vector3 pos = enemy.gameObject.transform.position * 1.05f;    // Map 1 1.05 scale
+            Vector3 pos = enemy.gameObject.transform.position * 2.6f;
             //map xz from -90,90 to 90,-90 to 
 
             poolX[i].gameObject.SetActive(enemy.health > 0); // TODO: delete enemies and markers if dead
-            poolX[i].anchoredPosition = new Vector2(pos.x + 5 , pos.z);
+            poolX[i].anchoredPosition = new Vector2(pos.x + 94 , pos.z - 95);
             i++;
         }
         playerMarker.anchoredPosition = new Vector2(player.position.x + 5, player.position.z);
