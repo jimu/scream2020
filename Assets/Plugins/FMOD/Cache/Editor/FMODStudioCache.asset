@@ -67,7 +67,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: DropBearPanicFMODProj/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637385715063576947
+
+  lastModified: 637386223372851618
+4d6797aad13b484111cbe6fcb57ece91e288a0ea
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -90,6 +92,23 @@ MonoBehaviour:
   lastModified: 637385220624925820
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &-5877335854725972669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/HeartBeat/HeartBeatSpeed
+  m_EditorClassIdentifier: 
+  Name: HeartBeatSpeed
+  Min: 0
+  Max: 1
+  Default: 0
   Exists: 1
 --- !u!114 &-5489483091333429753
 MonoBehaviour:
@@ -124,7 +143,10 @@ MonoBehaviour:
   Path: event:/Placeholder SFX
   guid: 875645df36eacf4b98d056e8f9881c69
   Banks:
-  - {fileID: -462306621069874416}
+
+
+  - {fileID: 5158878524440979119}
+4d6797aad13b484111cbe6fcb57ece91e288a0ea
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -304,17 +326,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -6861216009921186616}
-  - {fileID: -462306621069874416}
+
+  - {fileID: 5158878524440979119}
+4d6797aad13b484111cbe6fcb57ece91e288a0ea
   EditorEvents:
   - {fileID: 4888436923462718195}
   - {fileID: -4366133808974536695}
   - {fileID: 8649855030728521953}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -462306621069874416}
+
+  - {fileID: 5158878524440979119}
   StringsBanks:
   - {fileID: -6861216009921186616}
-  stringsBankWriteTime: 637385715063576947
+  stringsBankWriteTime: 637386223372851618
+ 4d6797aad13b484111cbe6fcb57ece91e288a0ea
   cacheVersion: 3
 --- !u!114 &623830468562080956
 MonoBehaviour:
@@ -453,6 +479,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &4831134417845263421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music 2/Music_State
+  m_EditorClassIdentifier: 
+  Name: Music_State
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &4888436923462718195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,15 +511,36 @@ MonoBehaviour:
   Path: event:/HeartBeat
   guid: 369a4875f9c1394ca7c62aa3c9a25868
   Banks:
-  - {fileID: -462306621069874416}
+
+  - {fileID: 5158878524440979119}
+4d6797aad13b484111cbe6fcb57ece91e288a0ea
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 1527499756061637581}
+  - {fileID: -5877335854725972669}
+4d6797aad13b484111cbe6fcb57ece91e288a0ea
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &5158878524440979119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: DropBearPanicFMODProj/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637386223372851618
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &6720106941692598516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,12 +573,16 @@ MonoBehaviour:
   Path: event:/Music 2
   guid: e88054b0ff662e44a253a605a25fd369
   Banks:
-  - {fileID: -462306621069874416}
+
+  - {fileID: 5158878524440979119}
+ 4d6797aad13b484111cbe6fcb57ece91e288a0ea
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -9070890207773748050}
+
+  - {fileID: 4831134417845263421}
+4d6797aad13b484111cbe6fcb57ece91e288a0ea
   MinDistance: 0
   MaxDistance: 0
   Length: 113103
