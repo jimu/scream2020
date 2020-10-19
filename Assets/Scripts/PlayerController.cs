@@ -32,8 +32,14 @@ public class PlayerController : MonoBehaviour
         float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
         transform.Translate(deltaX, 0f, deltaZ);
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Button0"))
             Interact();
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button1"))
+            OnLureButtonPressed();
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("Button2"))
+            OnBranchButtonPressed();
+        if (Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Button3"))
+            OnTotemButtonPressed();
         if (Input.GetKeyDown(KeyCode.Q))
             abilities[0].TriggerAbility();
     }
@@ -134,6 +140,28 @@ public class PlayerController : MonoBehaviour
         if (o.CompareTag("Enemy"))
             nearbyEnemies.Remove(o);
         FindClosestEnemy();
+    }
+
+
+    public void OnBranchButtonPressed()
+    {
+        Debug.Log("Branch Pressed!");
+    }
+
+    public void OnInteractButtonPressed()
+    {
+        Debug.Log("Interact Pressed!");
+        Interact();
+    }
+
+    public void OnTotemButtonPressed()
+    {
+        Debug.Log("Totem Pressed!");
+    }
+
+    public void OnLureButtonPressed()
+    {
+        Debug.Log("Lure Pressed!");
     }
 
 }
