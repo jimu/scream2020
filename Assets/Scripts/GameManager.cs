@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -185,6 +186,13 @@ public class GameManager : MonoBehaviour
     void IncrementFOV(int value)
     {
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView += value;
+    }
+
+
+    public void RecalculateNavigation()
+    {
+        foreach(Enemy enemy in enemies)
+            enemy.RecalculateNavigation();
     }
 
 }

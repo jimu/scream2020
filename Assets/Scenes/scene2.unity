@@ -3645,16 +3645,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 279008761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9521ed9253429b4448bf93d860a8403d, type: 3}
+  m_Script: {fileID: 11500000, guid: dfbb2ca83cea8d54691180e224a44ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  title: Totem
   icon: {fileID: 0}
   cooldownTime: 1
-  branchPrefab: {fileID: 0}
+  totemPrefab: {fileID: 599018281148352289, guid: 8df7aa47cdbb23f4fafdf4df81574cf4,
+    type: 3}
   animator: {fileID: 0}
   debris: {fileID: 0}
-  audioClip: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 5bc92c4001a3623498b386b304513ef1, type: 3}
+  totemDuration: 15
 --- !u!114 &279008766
 MonoBehaviour:
   m_ObjectHideFlags: 0

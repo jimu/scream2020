@@ -69,5 +69,10 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Dead", true);
         }
     }
+
+    public void RecalculateNavigation()
+    {
+        gameObject.GetComponent<MoveTo>().RecalculateNavigation();
+    }
 }
 

@@ -12,7 +12,7 @@ public class DropBranchAbility : AbilityBase
     [SerializeField] AudioClip sfx;
     //Audio System?
     public override void Ability()
-    {
+    { 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
         {

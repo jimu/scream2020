@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
     public void OnTotemButtonPressed()
     {
         Debug.Log("Totem Pressed!");
+        GetComponent<DropTotemAbility>().TriggerAbility();
     }
 
     public void OnLureButtonPressed()
