@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int value = 1;
     [SerializeField] public int health = 1;
     [SerializeField] float speed = 3.5f;
+    [SerializeField] public bool predVisionActive = false;
+    [SerializeField] SkinnedMeshRenderer predVision;
     Animator animator = null;
     NavMeshAgent navMeshAgent;
 
@@ -20,7 +22,19 @@ public class Enemy : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
+    void Update()
+    {
 
+        if (predVisionActive)
+        {
+            predVision.enabled = false;
+
+        }
+        else
+        {
+            predVision.enabled = true;
+        }
+    }
     public void Damage(int hits)
     {
         if (health > 0)

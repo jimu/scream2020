@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite[] borderGraphics;
     int currentBorderGraphic = 0;
     [SerializeField] Image borderGraphic;
+    [SerializeField] PredatorVision predatorVision;
 
     List<GameObject> exits;
-    
-    List<Enemy> enemies;
+    public List<Enemy> enemies;
     public Action<Enemy> removeEnemyAction = null;
 
     [SerializeField] GameObject debugPanel;
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Init();
+        predatorVision = GetComponent<PredatorVision>();
     }
 
     private void Init()
@@ -136,6 +137,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         if (Input.GetButtonDown("Button5")) // right bumper
             ToggleFOV();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            predatorVision.Toggle();
+        }
 
         float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
         if (analogZoom > 0.01 || analogZoom < -0.01)
