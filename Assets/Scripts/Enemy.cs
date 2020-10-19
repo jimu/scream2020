@@ -11,11 +11,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip sfxHurt;
     [SerializeField] public int value = 1;
     [SerializeField] public int health = 1;
+    [SerializeField] float speed = 3.5f;
     Animator animator = null;
+    NavMeshAgent navMeshAgent;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     public void Damage(int hits)
@@ -28,6 +31,24 @@ public class Enemy : MonoBehaviour
             else
                 GameManager.instance.GetComponent<AudioSource>().PlayOneShot(sfxHurt);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Branch"))
+        {
+            navMeshAgent.speed = 0f;
+            StartCoroutine(WaitAndDestroy(other.gameObject));
+        }
+    }
+
+    private IEnumerator WaitAndDestroy(GameObject gameObject)
+    {
+        Debug.Log("WaitAndDestroy:begin");
+        yield return new WaitForSeconds(3f);
+        Debug.Log("WaitAndDestroy:end");
+        Destroy(gameObject);
+        navMeshAgent.speed = speed;
     }
 
 

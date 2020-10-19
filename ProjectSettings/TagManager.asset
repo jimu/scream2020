@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Exit
   - Branch
+  - Log
   layers:
   - Default
   - TransparentFX

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Branch : MonoBehaviour
+public class Log : MonoBehaviour
 {
     bool isBlocking = false;
-    [Header("Branch falls north by default.  To cross path, Adjust Y or rotate in scene")]
+    [Header("Log falls north by default.  To cross path, Adjust Y or rotate in scene")]
     [SerializeField] Vector3 blockingAngle = new Vector3(90, 0, 0);
     [SerializeField] AudioClip sfx;
 
-    // get/set branch blocking the path
+
     public void Block()
     {
         isBlocking = true;

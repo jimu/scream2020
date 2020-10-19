@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject clawMarkPrefab;
     [SerializeField] GameObject plumbob;
-    [SerializeField] GameObject branchObstaclePrefab;
+    [SerializeField] GameObject logObstaclePrefab;
     [SerializeField] AudioClip sfxSnapToTarget;
     [SerializeField] AudioClip[] attackSounds;
     int attackSoundIndex = 0;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(deltaX, 0f, deltaZ);
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Button0"))
-            Interact();
+            OnInteractButtonPressed();
         if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button1"))
             OnLureButtonPressed();
         if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("Button2"))
@@ -51,8 +51,8 @@ public class PlayerController : MonoBehaviour
             GameObject o = hit.collider.gameObject;
             if (o.CompareTag("Enemy"))
                 DamageEnemyObject(o, 2);
-            else if (o.CompareTag("Branch"))
-                o.GetComponent<Branch>().Block();
+            else if (o.CompareTag("Log"))
+                o.GetComponent<Log>().Block();
             else if (closestObject != null)
                 DamageEnemyObject(closestObject, 1);
             else
@@ -146,6 +146,7 @@ public class PlayerController : MonoBehaviour
     public void OnBranchButtonPressed()
     {
         Debug.Log("Branch Pressed!");
+        GetComponent<DropBranchAbility>().TriggerAbility();
     }
 
     public void OnInteractButtonPressed()
