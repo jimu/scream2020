@@ -114,9 +114,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F5))
             CycleCamperModel();
         if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Plus))
-            IncrementFOV(5);
-        if (Input.GetKeyDown(KeyCode.Minus))
             IncrementFOV(-5);
+        if (Input.GetKeyDown(KeyCode.Minus))
+            IncrementFOV(5);
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
