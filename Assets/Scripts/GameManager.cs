@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite[] borderGraphics;
     int currentBorderGraphic = 0;
     [SerializeField] Image borderGraphic;
+    bool miniMapVisible = true;
 
     List<GameObject> exits;
     
@@ -128,6 +129,8 @@ public class GameManager : MonoBehaviour
             CycleBorderGraphic();
         if (Input.GetKeyDown(KeyCode.F5))
             CycleCamperModel();
+        if (Input.GetKeyDown(KeyCode.F6))
+            ToggleMiniMap();
         if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Plus))
             IncrementFOV(-5);
         if (Input.GetKeyDown(KeyCode.Minus))
@@ -164,6 +167,14 @@ public class GameManager : MonoBehaviour
         if (currentBorderGraphic < borderGraphics.Length)
             borderGraphic.sprite = borderGraphics[currentBorderGraphic];
     }
+
+
+    void ToggleMiniMap()
+    {
+        miniMapVisible = !miniMapVisible;
+        miniMap2.gameObject.SetActive(miniMapVisible);
+    }
+
 
     void SetState(GameState state)
     {
