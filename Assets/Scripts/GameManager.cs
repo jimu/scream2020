@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape) )
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape))
             SetState(state == GameState.Help ? GameState.Playing : GameState.Help);
         if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.F2))
             SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
@@ -126,6 +126,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         if (Input.GetButtonDown("Button5")) // right bumper
             ToggleFOV();
+
+        float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
+        if (analogZoom > 0.01 || analogZoom < -0.01)
+            IncrementFOV(analogZoom);
     }
     void CycleCamperModel()
     {
@@ -190,7 +194,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = value.ToString();
     }
 
-    void IncrementFOV(int value)
+    void IncrementFOV(float value)
     {
         mainCamera.fieldOfView += value;
     }

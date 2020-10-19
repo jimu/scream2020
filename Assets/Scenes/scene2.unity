@@ -13854,7 +13854,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -13867,8 +13867,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "F1 - Toggle help\nESC - Pause\nR - Restart\nSPACE - Interact\nF3 - Cycle
     terror\nF4 - Cycle border\nF5 - Cycle camper models\n+/- - Camera FoV \xB15\nT
-    = Totem Ability\nB = Branch Ability\n=== JOYPAD ===\nR.Bumper = Zoom\nXYAB =
-    Abilities"
+    = Totem Ability\nB = Branch Ability\n=== GAMEPAD ===\nXYAB - Abilities\nR.Bump
+    - Zoom Toggle\nTriggers & R.Joy - Zoom"
 --- !u!222 &1868770918
 CanvasRenderer:
   m_ObjectHideFlags: 0
