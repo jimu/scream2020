@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     List<GameObject> exits;
     List<Enemy> enemies;
     [SerializeField] GameObject debugPanel;
+    [SerializeField] float fovZoomIn  = 60;
+    [SerializeField] float fovZoomOut = 90;
+
+    Camera mainCamera;
 
     AudioSource audioSource;
 
@@ -48,6 +52,7 @@ public class GameManager : MonoBehaviour
     {
         GameManager.instance = this;
         audioSource = GetComponent<AudioSource>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Init();
     }
 
@@ -119,6 +124,8 @@ public class GameManager : MonoBehaviour
             IncrementFOV(5);
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (Input.GetButtonDown("Button5")) // right bumper
+            ToggleFOV();
     }
     void CycleCamperModel()
     {
@@ -185,7 +192,12 @@ public class GameManager : MonoBehaviour
 
     void IncrementFOV(int value)
     {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView += value;
+        mainCamera.fieldOfView += value;
+    }
+
+    void ToggleFOV()
+    {
+        mainCamera.fieldOfView = mainCamera.fieldOfView == fovZoomIn ? fovZoomOut : fovZoomIn;
     }
 
 
