@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 #pragma warning disable CS0649
 
@@ -19,7 +20,7 @@ public class TerrorMeter : MonoBehaviour
     public void Set(int terrorLevel)
     {
         for (int i = 0; i < icons.Length; ++i)
-            icons[i].GetComponent<SpriteRenderer>().sprite = i >= terrorLevel ? goodSprite : badSprite;
+            icons[i].GetComponent<Image>().sprite = i >= terrorLevel ? goodSprite : badSprite;
 
     }
 }
