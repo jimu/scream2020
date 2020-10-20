@@ -148,6 +148,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         if (Input.GetButtonDown("Button5")) // right bumper
             ToggleFOV();
+        if (Input.GetKeyDown(KeyCode.Home))
+            SoundManager.instance.PlayOneShot("event:/Placeholder SFX");
+        if (Input.GetKeyDown(KeyCode.M))
+            SoundManager.instance.ToggleMusic();
 
         float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
         if (analogZoom > 0.01 || analogZoom < -0.01)
@@ -207,7 +211,9 @@ public class GameManager : MonoBehaviour
             state == GameState.Playing ? Music.Gameplay :
             state == GameState.Paused ? Music.Gameplay :
             Music.None;
-             
+
+
+        SoundManager.instance?.SetSubduedMusic(state == GameState.Paused);
         SoundManager.instance?.PlayMusic(music);
 
     }

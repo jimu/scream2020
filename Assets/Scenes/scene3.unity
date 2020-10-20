@@ -27884,6 +27884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f81e2c3766f86488bfbb1eddee78bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subduedVolume: 0.3
   music: event:/Music 2
 --- !u!1001 &1101853664
 PrefabInstance:
@@ -43754,7 +43755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -216.87}
+  m_AnchoredPosition: {x: 10, y: -171.86}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1868770917
@@ -43789,10 +43790,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "F1 - Toggle help\nESC - Pause\nR - Restart\nSPACE - Interact\nF3 - Cycle
-    terror\nF4 - Cycle border\nF5 - Cycle camper models\nF6 - Toggle Minimap\n+/-
-    - Camera FoV \xB15\nT = Totem Ability\nB = Branch Ability\n=== GAMEPAD ===\nXYAB
-    - Abilities\nR.Bump - Zoom Toggle\nTriggers & R.Joy - Zoom"
+  m_Text: "F1 - Toggle help\nESC - Pause\nR - Restart\nM - Toggle Music\nSPACE -
+    Interact\nF3 - Cycle terror\nF4 - Cycle border\nF5 - Cycle camper models\nF6
+    - Toggle Minimap\n+/- - Camera FoV \xB15\nT = Totem Ability\nB = Branch Ability\n===
+    GAMEPAD ===\nXYAB - Abilities\nR.Bump - Zoom Toggle\nTriggers & R.Joy - Zoom"
 --- !u!222 &1868770918
 CanvasRenderer:
   m_ObjectHideFlags: 0

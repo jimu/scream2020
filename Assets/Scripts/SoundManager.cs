@@ -16,6 +16,10 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
     Music currentMusic = Music.None;
+    bool isMusicSubdued = false;
+    bool isMusicMuted = false;
+
+    [SerializeField] float subduedVolume = 0.3f;
 
     [FMODUnity.EventRef] public string music = "event:/Music 2";
 
@@ -51,6 +55,31 @@ public class SoundManager : MonoBehaviour
             }
             Debug.Log(string.Format("Music ({0}) playing", music));
             currentMusic = music;
+        }
+    }
+
+    public void PlayOneShot(string sfxEventRef)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(sfxEventRef);
+    }
+    public void SetMusicVolume(float volume)
+    {
+        musicEventInstance.setVolume(volume);
+    }
+
+    public void ToggleMusic()
+    {
+        isMusicMuted = !isMusicMuted;
+        musicEventInstance.setVolume(isMusicMuted ? 0f : isMusicSubdued ? subduedVolume : 1f);
+    }
+
+    public void SetSubduedMusic(bool isSubdued = true)
+    {
+        if (isSubdued != isMusicSubdued)
+        {
+            isMusicSubdued = isSubdued;
+            if (!isMusicMuted)
+                musicEventInstance.setVolume(isMusicSubdued ? subduedVolume : 1f);
         }
     }
 }
