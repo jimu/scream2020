@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-#pragma warning disable CS0649
-
-public class SoundManager : MonoBehaviour
+public class SoundManager0 : MonoBehaviour
 {
-    public static SoundManager mainAudio;
+    public static SoundManager0 mainAudio;
 
     [SerializeField]
     private string bulletFire;
 
-    public FMOD.Studio.EventInstance bulletFireEvent;
+    [FMODUnity.EventRef] public string music;
+
+    public FMOD.Studio.EventInstance bulletFireEvent;   // not used
+    public FMOD.Studio.EventInstance musicEvent;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,6 +25,12 @@ public class SoundManager : MonoBehaviour
             mainAudio = this;
         DontDestroyOnLoad(gameObject);
 
+    }
+
+    void Start()
+    {
+        musicEvent = FMODUnity.RuntimeManager.CreateInstance(music);
+        musicEvent.start();
 
     }
 
@@ -32,8 +39,8 @@ public class SoundManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            //Debug.Log("Space Key Pressed");
-            //FMODUnity.RuntimeManager.PlayOneShot(bulletFire);
+            Debug.Log("Space Key Pressed");
+            FMODUnity.RuntimeManager.PlayOneShot(bulletFire);
         }
     }
 }
