@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 #pragma warning disable 0649
 
-enum GameState { Invalid, Start, Playing, Help, GameOver, HighScores }
+enum GameState { Invalid, Start, Playing, Paused, Help, GameOver, HighScores }
 
 public class GameManager : MonoBehaviour
 {
@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        SetState(GameState.Start);
         SetScore(0);
 
         exits = new List<GameObject>();
@@ -82,7 +81,13 @@ public class GameManager : MonoBehaviour
         }
         miniMap2.Init(enemies); // initialize minimap with our new enemy listss
     }
-    
+
+    // Wait for SoundManager before playing music
+    private void Start()
+    {
+        SetState(GameState.Start);
+    }
+
     public void removeEnemy(Enemy enemy)
     {
         removeEnemyAction(enemy);
@@ -118,7 +123,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape))
-            SetState(state == GameState.Help ? GameState.Playing : GameState.Help);
+            SetState(
+                state == GameState.Start ? GameState.Help :
+                state == GameState.Help ? GameState.Start :
+                state == GameState.Paused ? GameState.Playing :
+                GameState.Paused);
         if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.F2))
             SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
         if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F3))
@@ -178,6 +187,9 @@ public class GameManager : MonoBehaviour
 
     void SetState(GameState state)
     {
+        // Hack so "help" on Title will have title music while pausing ingame will have GamePlay music
+        if (this.state == GameState.Start && state == GameState.Paused)
+            state = GameState.Help;
 
         //Debug.Log("setState(" + state.ToString() + ")");
         this.state = state;
@@ -185,14 +197,24 @@ public class GameManager : MonoBehaviour
         Time.timeScale = state == GameState.Playing ? 1f : 0f;
 
         startPanel.SetActive(state == GameState.Start);
-        helpPanel.SetActive(state == GameState.Help);
+        helpPanel.SetActive(state == GameState.Help || state == GameState.Paused);
         miniMap.SetActive(state == GameState.Playing);
         hud.SetActive(state == GameState.Playing);
+
+        Music music =
+            state == GameState.Start ? Music.Title :
+            state == GameState.Help ? Music.Title :
+            state == GameState.Playing ? Music.Gameplay :
+            state == GameState.Paused ? Music.Gameplay :
+            Music.None;
+             
+        SoundManager.instance?.PlayMusic(music);
+
     }
 
     public void OnClosePressed()
     {
-        SetState(GameState.Playing);
+        SetState(state == GameState.Help ? GameState.Start : GameState.Playing);
     }
 
 
