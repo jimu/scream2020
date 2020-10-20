@@ -15,8 +15,8 @@ public class PredatorVision : MonoBehaviour
     public void Toggle()
     {
         isEnabled = !isEnabled;
-        Debug.Log("PredatorVision: " + (isEnabled ? "ON" : "OFF"));
+        Debug.Log("PredatorVision: " + (isEnabled ? "ON" : "OFF") + "(" + gameObject.name + ")");
         foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Enemy"))
-            gameObject.GetComponent<SkinnedMeshRenderer>().enabled = isEnabled;
+            gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = isEnabled;
     }
 }
