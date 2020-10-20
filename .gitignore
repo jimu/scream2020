@@ -69,3 +69,6 @@ fmod_editor.log
 !*.*.meta
 
 DropBearPanicFMODProj/.cache
+DropBearPanicFMODProj/.unsaved/
+Assets/StreamingAssets/
+Assets/StreamingAssets/Master.bank
