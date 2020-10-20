@@ -28,14 +28,13 @@ public class GameManager : MonoBehaviour
 
     List<GameObject> exits;
     
-    public List<Enemy> enemies;
+    List<Enemy> enemies;
     public Action<Enemy> removeEnemyAction = null;
 
     [SerializeField] GameObject debugPanel;
     [SerializeField] float fovZoomIn  = 60;
     [SerializeField] float fovZoomOut = 90;
     [SerializeField] GameObject progressBar;
-    public PredatorVision predatorVision;
 
     Camera mainCamera;
 
@@ -58,7 +57,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameManager.instance = this;
-        predatorVision = GetComponent<PredatorVision>();
         audioSource = GetComponent<AudioSource>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Init();
