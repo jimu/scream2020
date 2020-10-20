@@ -58,7 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-*.swp
+*.sw[op]
 Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
 fmod_editor.log
 *~
@@ -67,3 +67,5 @@ fmod_editor.log
 *.meta
 #But not source file with postfix. which is everything but a folder
 !*.*.meta
+
+DropBearPanicFMODProj/.cache
