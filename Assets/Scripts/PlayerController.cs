@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip[] attackSounds;
     int attackSoundIndex = 0;
 
-    int inventoryLures = 0;
-    int inventoryTotems = 0;
-    int inventoryBranches = 0;
+    int inventoryLures = 5;
+    int inventoryTotems = 5;
+    int inventoryBranches = 5;
 
     // Looting
     bool isLooting = false;
@@ -62,6 +62,10 @@ public class PlayerController : MonoBehaviour
         abilities = GetComponents<AbilityBase>();
         nearbyEnemies = new List<GameObject>();
         GameManager.instance.removeEnemyAction += RemoveNearbyEnemy;
+        UpdateInventory();
+
+        // hack - update camra's follow script (because it's don't destroy on load now)
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Follow>().Init();
     }
 
 
@@ -95,6 +99,7 @@ public class PlayerController : MonoBehaviour
                 enemyBeingLooted = null;
             }
         }
+
     }
     void Interact()
     {
@@ -248,6 +253,7 @@ public class PlayerController : MonoBehaviour
         if (inventoryLures > 0)
         {
             Debug.Log("Lure Pressed!");
+            GetComponent<DropLureAbility>().TriggerAbility();
             inventoryLures--;
             UpdateInventory();
         }

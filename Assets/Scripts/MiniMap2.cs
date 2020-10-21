@@ -88,18 +88,18 @@ public class MiniMap2 : MonoBehaviour
 
     public void UpdateLogs()
     {
-        Debug.Log("Logs.Update() " + GameObject.FindGameObjectsWithTag("Log").Length + " logs");
+//        Debug.Log("Logs.Update() " + GameObject.FindGameObjectsWithTag("Log").Length + " logs");
         int i = 0;
         foreach (GameObject log in GameObject.FindGameObjectsWithTag("Log"))
         {
-            Debug.Log("   " + log.name);
+//            Debug.Log("   " + log.name);
 
             bool isBlocking = log.GetComponent<Log>().IsBlocking();
             Vector3 pos = log.gameObject.transform.position * scaleHackMult;
             logIcons[i].anchoredPosition = new Vector2(pos.x + scaleHackX, pos.z + scaleHackY);
             logIcons[i].GetComponent<UnityEngine.UI.Image>().sprite = isBlocking ? blockingLogSprite : uprightLogSprite;
             i++;
-            Debug.Log("updated log " + log.name);
+//            Debug.Log("updated log " + log.name);
         }
 
     }

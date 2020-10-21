@@ -11,8 +11,15 @@ public class Follow : MonoBehaviour
 
     private void Awake()
     {
-        FollowTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        Init();
     }
+
+    public void Init()
+    {
+        FollowTarget(GameObject.FindGameObjectWithTag("Player").transform);
+
+    }
+
     private void Update()
     {
         //Debug.Log("Target.position=" + target.position);
