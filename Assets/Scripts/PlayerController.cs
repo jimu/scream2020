@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 
 #pragma warning disable 0649
 public class PlayerController : MonoBehaviour
@@ -16,7 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip sfxLootComplete;
     [SerializeField] AudioClip[] attackSounds;
     int attackSoundIndex = 0;
-    
+
+    int inventoryLures = 0;
+    int inventoryTotems = 0;
+    int inventoryBranches = 0;
+
     // Looting
     bool isLooting = false;
     [SerializeField] float lootDuration;
@@ -26,9 +32,29 @@ public class PlayerController : MonoBehaviour
     List<GameObject> nearbyEnemies;
     GameObject closestObject = null;
 
+    [SerializeField] UnityEngine.UI.Text inventoryText = null;
+
+
 
 
     public AbilityBase[] abilities;
+
+
+    private void UpdateInventory()
+    {
+        string message = "";
+        if (inventoryTotems > 0)
+            message += "Totems: " + inventoryTotems + "\n";
+        if (inventoryLures > 0)
+            message += "Lures: " + inventoryLures + "\n";
+        if (inventoryBranches > 0)
+            message += "Branches: " + inventoryBranches + "\n";
+
+        if (inventoryText != null)
+            inventoryText.text = message;
+        else
+            Debug.Log(message);
+    }
 
 
     private void Start()
@@ -149,7 +175,7 @@ public class PlayerController : MonoBehaviour
         {
             plumbob.transform.SetParent(closestObject.transform, false);
             GameManager.instance.PlayOneShot(sfxSnapToTarget);
-            Debug.Log("Selected: " + closestObject.name);
+            //Debug.Log("Selected: " + closestObject.name);
         }
 
         plumbob.SetActive(closestObject != false);
@@ -158,14 +184,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Adding " + other.gameObject.name);
+        //Debug.Log("Adding " + other.gameObject.name);
         if (other.gameObject.CompareTag("Enemy"))
             nearbyEnemies.Add(other.gameObject);
         FindClosestEnemy();
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Remove " + other.gameObject.name);
+        //Debug.Log("Remove " + other.gameObject.name);
         GameObject o = other.gameObject;
         if (o.CompareTag("Enemy"))
             nearbyEnemies.Remove(o);
@@ -178,28 +204,58 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
-    public void OnBranchButtonPressed()
-    {
-        Debug.Log("Branch Pressed!");
-        GetComponent<DropBranchAbility>().TriggerAbility();
-    }
-
     public void OnInteractButtonPressed()
     {
         Debug.Log("Interact Pressed!");
         Interact();
     }
 
+
+    public void OnBranchButtonPressed()
+    {
+        if (inventoryBranches > 0)
+        {
+            Debug.Log("Branch Pressed!");
+            GetComponent<DropBranchAbility>().TriggerAbility();
+            inventoryBranches--;
+            UpdateInventory();
+        }
+        else
+        {
+            // fail sound - branch 
+            Debug.Log("No Branches in inventory");
+        }
+    }
+
     public void OnTotemButtonPressed()
     {
-        Debug.Log("Totem Pressed!");
-        GetComponent<DropTotemAbility>().TriggerAbility();
+        if (inventoryTotems > 0)
+        {
+            Debug.Log("Totem Pressed!");
+            GetComponent<DropTotemAbility>().TriggerAbility();
+            inventoryTotems--;
+            UpdateInventory();
+        }
+        else
+        {
+            // fail sound - totem
+            Debug.Log("No Totems in inventory");
+        }
     }
 
     public void OnLureButtonPressed()
     {
-        Debug.Log("Lure Pressed!");
+        if (inventoryLures > 0)
+        {
+            Debug.Log("Lure Pressed!");
+            inventoryLures--;
+            UpdateInventory();
+        }
+        else
+        {
+            // fail sound - lure
+            Debug.Log("No Lures in inventory");
+        }
     }
 
 
@@ -218,5 +274,10 @@ public class PlayerController : MonoBehaviour
     {
         isLooting = false;
         GameManager.instance.StopProgressBar();
+
+        inventoryBranches++;
+        inventoryLures++;
+        inventoryTotems++;
+        UpdateInventory();
     }
 }

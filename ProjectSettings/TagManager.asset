@@ -10,6 +10,7 @@ TagManager:
   - Branch
   - Log
   - Corpse
+  - MiniMap
   layers:
   - Default
   - TransparentFX

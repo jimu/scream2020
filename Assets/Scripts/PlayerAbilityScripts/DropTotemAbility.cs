@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+#pragma warning disable 0649,0414
 public class DropTotemAbility : AbilityBase
 {
 

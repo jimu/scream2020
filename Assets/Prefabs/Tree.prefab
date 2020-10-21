@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4608514741634613639}
   - component: {fileID: -1276359136517865401}
   m_Layer: 0
-  m_Name: Branch
-  m_TagString: Branch
+  m_Name: Tree
+  m_TagString: Log
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84916e918fe8e541abbc40540efbf98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingAngle: {x: 90, y: 0, z: 0}
   sfx: {fileID: 8300000, guid: d9a3b0f4b1508274c962cbfb51606e68, type: 3}
 --- !u!136 &-1276359136517865401
 CapsuleCollider:
