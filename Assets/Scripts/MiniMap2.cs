@@ -34,17 +34,21 @@ public class MiniMap2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        const float scaleHackMult = 2.6f;  // scene3
+        const float scaleHackX = 94f;
+        const float scaleHackY = -95f;
+
         int i = 0;
         foreach(Enemy enemy in enemies)
         {
             //Vector3 pos = enemy.gameObject.transform.position * 1.05f;    // Map 1 1.05 scale
-            Vector3 pos = enemy.gameObject.transform.position * 2.6f;
+            Vector3 pos = enemy.gameObject.transform.position * scaleHackMult;
             //map xz from -90,90 to 90,-90 to 
 
             poolX[i].gameObject.SetActive(enemy.health > 0); // TODO: delete enemies and markers if dead
-            poolX[i].anchoredPosition = new Vector2(pos.x + 94 , pos.z - 95);
+            poolX[i].anchoredPosition = new Vector2(pos.x + scaleHackX, pos.z + scaleHackY);
             i++;
         }
-        playerMarker.anchoredPosition = new Vector2(player.position.x + 5, player.position.z);
+        playerMarker.anchoredPosition = new Vector2(player.position.x * scaleHackMult + scaleHackX, player.position.z * scaleHackMult + scaleHackY);
     }
 }
