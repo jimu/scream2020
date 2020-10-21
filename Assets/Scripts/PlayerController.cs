@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip sfxLooting;
     [SerializeField] AudioClip sfxLootComplete;
     [SerializeField] AudioClip[] attackSounds;
+    
+    GameObject areaOfEffectObject;
     int attackSoundIndex = 0;
 
     int inventoryLures = 5;
@@ -77,12 +79,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown( KeyCode.Space) || Input.GetButtonDown("Button0"))
             OnInteractButtonPressed();
-        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button1"))
-            OnLureButtonPressed();
-        if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("Button2"))
-            OnBranchButtonPressed();
-        if (Input.GetKeyDown(KeyCode.T) || Input.GetButtonDown("Button3"))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetButtonDown("Button1") || Input.GetMouseButtonDown(0))
+            DisplayAreaOfEffect(GetComponent<DropTotemAbility>().aoe);
+        if (Input.GetKeyUp(KeyCode.J) || Input.GetButtonUp("Button1") || Input.GetMouseButtonUp(0))
             OnTotemButtonPressed();
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("Button2") || Input.GetMouseButtonDown(2))
+            OnBranchButtonPressed();
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button3") || Input.GetMouseButtonDown(1))
+            DisplayAreaOfEffect(GetComponent<DropLureAbility>().aoe);
+        if (Input.GetKeyUp(KeyCode.L) || Input.GetButtonUp("Button3") || Input.GetMouseButtonUp(1))
+            OnLureButtonPressed();
         if (Input.GetKeyDown(KeyCode.Q))
             abilities[0].TriggerAbility();
 
@@ -101,6 +107,19 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    void HideAreaOfEffect()
+    {
+        areaOfEffectObject.SetActive(false);
+    }
+
+    void DisplayAreaOfEffect(GameObject aoe)
+    {
+        areaOfEffectObject = aoe;
+        areaOfEffectObject.SetActive(true);
+    }
+
+
     void Interact()
     {
         RaycastHit hit;
@@ -234,6 +253,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnTotemButtonPressed()
     {
+        HideAreaOfEffect();
         if (inventoryTotems > 0)
         {
             Debug.Log("Totem Pressed!");
@@ -250,6 +270,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnLureButtonPressed()
     {
+        HideAreaOfEffect();
         if (inventoryLures > 0)
         {
             Debug.Log("Lure Pressed!");

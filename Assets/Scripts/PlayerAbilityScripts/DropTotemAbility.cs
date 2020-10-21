@@ -13,6 +13,7 @@ public class DropTotemAbility : AbilityBase
     [SerializeField] private ParticleSystem debris;
     [SerializeField] AudioClip sfx;
     [SerializeField] float totemDuration = 15f;
+    [SerializeField] public GameObject aoe;
     //Audio System?
     public override void Ability()
     {

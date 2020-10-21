@@ -11,6 +11,7 @@ public class DropLureAbility : AbilityBase
     [SerializeField] private GameObject lurePrefab;
     [SerializeField] private Animator animator = default;
     [SerializeField] private ParticleSystem debris;
+    [SerializeField] public GameObject aoe;
     [SerializeField] AudioClip sfx;
     // [SerializeField] float lureDuration = 15f;   // does not decay
     //Audio System?
