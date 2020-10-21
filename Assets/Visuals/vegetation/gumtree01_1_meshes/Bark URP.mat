@@ -44,7 +44,7 @@ Material:
     - _BaseDetail: 1
     - _BumpScale: 1
     - _CullMode: 2
-    - _GlobalWindInfluence: 1
+    - _GlobalWindInfluence: 0
     - _Glossiness: 0
     - _Height: 0
     - _Metallic: 0
