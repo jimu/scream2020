@@ -9,7 +9,8 @@ public class MiniMap2 : MonoBehaviour
     [SerializeField] GameObject prefabX;
     [SerializeField] GameObject prefabPlayerMarker;
     List<Enemy> enemies;
-    RectTransform[] poolX;
+    RectTransform[] poolX; // TODO: should be list or not exist at all
+    int poolXcount;
     RectTransform playerMarker;
     Transform player;
 
@@ -21,14 +22,22 @@ public class MiniMap2 : MonoBehaviour
         for(int i = 0; i < enemies.Count; ++i)
             poolX[i] = Instantiate(prefabX, transform).GetComponent<RectTransform>();
 
+        poolXcount = enemies.Count;
         playerMarker = Instantiate(prefabPlayerMarker, transform).GetComponent<RectTransform>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void RemoveEnemy(Enemy enemy)
     {
-        enemies.Remove(enemy);
-        Destroy(poolX[enemies.Count].gameObject);
+        //Debug.Log("MiniMap2.RemoveEnemy:" + enemy.gameObject.name + " b4:"+ enemies.Count + "/" + poolXcount);
+        //foreach (Enemy e in enemies)
+        //    Debug.Log(e.gameObject.name); enemies.Remove(enemy);
+        poolXcount--;
+        Destroy(poolX[poolXcount].gameObject);
+        poolX[poolXcount] = null;
+        //Debug.Log("MiniMap2.RemoveEnemy:" + enemy.gameObject.name + " After:" + enemies.Count + "/" + poolXcount);
+        //foreach (Enemy e in enemies)
+        //    Debug.Log(e.gameObject.name);
     }
 
     // Update is called once per frame
@@ -44,6 +53,11 @@ public class MiniMap2 : MonoBehaviour
             //Vector3 pos = enemy.gameObject.transform.position * 1.05f;    // Map 1 1.05 scale
             Vector3 pos = enemy.gameObject.transform.position * scaleHackMult;
             //map xz from -90,90 to 90,-90 to 
+            if (poolX[i] == null)
+            {
+                Debug.Log("Fail:" + enemy.gameObject.name + " After:" + enemies.Count + "/" + poolXcount);
+                Debug.Break();
+            }
 
             poolX[i].gameObject.SetActive(enemy.health > 0); // TODO: delete enemies and markers if dead
             poolX[i].anchoredPosition = new Vector2(pos.x + scaleHackX, pos.z + scaleHackY);

@@ -88,10 +88,13 @@ public class GameManager : MonoBehaviour
         SetState(GameState.Start);
     }
 
-    public void removeEnemy(Enemy enemy)
+    public void RemoveEnemy(Enemy enemy)
     {
+       // Debug.Log("GameManager.RemoveEnemy: " + enemy.gameObject.name);
+
         removeEnemyAction(enemy);
         enemies.Remove(enemy);
+        //Debug.Log("GameManager.RemoveEnemy: " + enemy.gameObject.name + " DONE");
     }
 
     public void PlayOneShot(AudioClip audioClip)

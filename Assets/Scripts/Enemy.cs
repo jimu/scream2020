@@ -40,6 +40,12 @@ public class Enemy : MonoBehaviour
             navMeshAgent.speed = 0f;
             StartCoroutine(WaitAndDestroy(other.gameObject));
         }
+        else if (other.gameObject.CompareTag("Exit"))
+        {
+            Debug.Log("Enemy escaped:" + gameObject.name);
+            GameManager.instance.RemoveEnemy(this);
+            Destroy(this.gameObject);
+        }
     }
 
     private IEnumerator WaitAndDestroy(GameObject gameObject)
@@ -58,7 +64,7 @@ public class Enemy : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         GameManager.instance.GetComponent<AudioSource>().PlayOneShot(sfxDeath);
         gameObject.tag = "Corpse";
-        GameManager.instance.removeEnemy(this);
+        GameManager.instance.RemoveEnemy(this);
 
         if (animator == null)
         {   // cylinder

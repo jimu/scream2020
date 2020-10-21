@@ -3478,10 +3478,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windZone: {fileID: 155776775}
-  windStrength: 9.71
-  windDirection: 13.9
-  windPulse: 0.02
-  windTurbulence: 1.18
+  windStrength: 0
+  windDirection: 0
+  windPulse: 0
+  windTurbulence: 0
   windRandomness: 1
   BillboardWind: 1
   BillboardWindInfluence: 0.5
