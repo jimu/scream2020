@@ -16,7 +16,7 @@ MonoBehaviour:
   HasSourceProject: 1
   HasPlatforms: 1
   sourceProjectPath: DropBearPanicFMODProj/DropBearPanicFMODProj.fspro
-  sourceBankPath: DropBearPanicFMODProj\Build
+  sourceBankPath: DropBearPanicFMODProj/Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
