@@ -1,5 +1,4 @@
-﻿using FMODUnity;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StartMenu : MonoBehaviour
 {
@@ -24,6 +23,6 @@ public class StartMenu : MonoBehaviour
 
     private void Awake()
     {
-        SoundManager.instance?.PlayMusic(Music.Title);
+
     }
 }

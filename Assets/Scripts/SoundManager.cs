@@ -14,72 +14,46 @@ public enum Music { None = -1, Title, Gameplay, Takedown };
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
+    public static SoundManager mainAudio;
     Music currentMusic = Music.None;
     bool isMusicSubdued = false;
     bool isMusicMuted = false;
 
     [SerializeField] float subduedVolume = 0.3f;
 
-    [FMODUnity.EventRef] public string music = "event:/Music 2";
+    public string music;
 
-    FMOD.Studio.EventInstance musicEventInstance;
-    
+
+
 
     void Awake()
     {
-        if (instance != null)
+        if (mainAudio != null)
         {
             DestroyImmediate(this);
             return;
         }
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-        musicEventInstance = FMODUnity.RuntimeManager.CreateInstance(music);
-    }
-
-
-
-
-    public void PlayMusic(Music music)
-    {
-        if (currentMusic != music)
+        else
         {
-            if (music == Music.None)
-                musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            else
-            {
-                musicEventInstance.setParameterByName("Music_State", (int)music); // 0 = title music
-                musicEventInstance.start();
-            }
-            Debug.Log(string.Format("Music ({0}) playing", music));
-            currentMusic = music;
+            mainAudio = this;
+            DontDestroyOnLoad(gameObject);
         }
+
+
     }
 
-    public void PlayOneShot(string sfxEventRef)
+    void Start()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(sfxEventRef);
+
     }
-    public void SetMusicVolume(float volume)
+
+    void Update()
     {
-        musicEventInstance.setVolume(volume);
+
     }
 
     public void ToggleMusic()
     {
-        isMusicMuted = !isMusicMuted;
-        musicEventInstance.setVolume(isMusicMuted ? 0f : isMusicSubdued ? subduedVolume : 1f);
-    }
-
-    public void SetSubduedMusic(bool isSubdued = true)
-    {
-        if (isSubdued != isMusicSubdued)
-        {
-            isMusicSubdued = isSubdued;
-            if (!isMusicMuted)
-                musicEventInstance.setVolume(isMusicSubdued ? subduedVolume : 1f);
-        }
+        Debug.Log("toggle deez nuts");
     }
 }

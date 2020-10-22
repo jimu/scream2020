@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Init();
+
+
     }
 
     private void Init()
@@ -80,12 +82,16 @@ public class GameManager : MonoBehaviour
             moveTo.goal = exits[UnityEngine.Random.Range(0, exits.Count)].transform;
         }
         miniMap2.Init(enemies); // initialize minimap with our new enemy listss
+
+     
     }
 
     // Wait for SoundManager before playing music
     private void Start()
     {
         SetState(GameState.Start);
+
+       
     }
 
     public void RemoveEnemy(Enemy enemy)
@@ -152,13 +158,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Button5")) // right bumper
             ToggleFOV();
         if (Input.GetKeyDown(KeyCode.Home))
-            SoundManager.instance.PlayOneShot("event:/Placeholder SFX");
+          //  SoundManager.mainAudio.PlayOneShot("event:/Placeholder SFX");
         if (Input.GetKeyDown(KeyCode.M))
-            SoundManager.instance.ToggleMusic();
+           SoundManager.mainAudio.ToggleMusic();
 
-        float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
-        if (analogZoom > 0.01 || analogZoom < -0.01)
-            IncrementFOV(analogZoom);
+       float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
+       if (analogZoom > 0.01 || analogZoom < -0.01)
+          IncrementFOV(analogZoom);
     }
     void CycleCamperModel()
     {
@@ -216,8 +222,8 @@ public class GameManager : MonoBehaviour
             Music.None;
 
 
-        SoundManager.instance?.SetSubduedMusic(state == GameState.Paused);
-        SoundManager.instance?.PlayMusic(music);
+      //  SoundManager.instance?.SetSubduedMusic(state == GameState.Paused);
+    //    SoundManager.instance?.PlayMusic(music);
 
     }
 
