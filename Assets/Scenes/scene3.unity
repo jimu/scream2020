@@ -46221,7 +46221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -236.5}
+  m_AnchoredPosition: {x: 10, y: -195.62}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1868770917
@@ -46258,9 +46258,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "F1 - Toggle help\nESC - Pause\nR - Restart\nM - Toggle Music\nF3 - Cycle
     terror\nF4 - Cycle border\nF5 - Cycle camper models\nF6 - Toggle Minimap\n+/-
-    - Camera FoV \xB15\n=== GAMEPAD ===\nXYAB - Abilities\nR.Bump - Zoom Toggle\nTriggers
-    & R.Joy - Zoom\n\nInteract/Totem/Branch/Lure\n  \n   Keyboard: Space J K L\n  
-    Gamepad: A B X Y\n   Mouse: Space L M R\n   (mouse pointer not used)\n"
+    - Camera FoV \xB15\n=== GAMEPAD ===\n  R.Bump - Zoom Toggle\n  Triggers & R.Joy
+    - Zoom\nInteract/Totem/Branch/Lure\n   Keyboard: Space J K L\n   Gamepad: A B
+    X Y\n"
 --- !u!222 &1868770918
 CanvasRenderer:
   m_ObjectHideFlags: 0
