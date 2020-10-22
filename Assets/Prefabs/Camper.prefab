@@ -240,7 +240,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95874371ef816544381a7c52e47af8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 0}
 --- !u!114 &5360087899298570024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxDeath: {fileID: 8300000, guid: 068142bfaa06f014da3689fc7c097876, type: 3}
   sfxHurt: {fileID: 8300000, guid: 9b5bf180ed2bceb40b8fec37da77f3c8, type: 3}
+  sfxEatLure: {fileID: 8300000, guid: d9c5d317a599beb468b847923bf2ef63, type: 3}
   value: 1
   health: 1
   speed: 3.5

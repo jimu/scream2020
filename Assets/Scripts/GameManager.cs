@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     List<GameObject> exits;
     
-    List<Enemy> enemies;
+    public List<Enemy> enemies;
     public Action<Enemy> removeEnemyAction = null;
 
     [SerializeField] GameObject debugPanel;
@@ -59,10 +59,15 @@ public class GameManager : MonoBehaviour
         GameManager.instance = this;
         audioSource = GetComponent<AudioSource>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        Init();
-
-
     }
+
+    // wait as long as posible so enemies can awake
+    private void Start()
+    {
+        Init();
+        SetState(GameState.Start);
+    }
+
 
     private void Init()
     {
@@ -79,19 +84,9 @@ public class GameManager : MonoBehaviour
             enemies.Add(enemy);
 
             MoveTo moveTo = o.GetComponent<MoveTo>();
-            moveTo.goal = exits[UnityEngine.Random.Range(0, exits.Count)].transform;
+            moveTo.SetExitPosition(exits[UnityEngine.Random.Range(0, exits.Count)].transform.position);
         }
         miniMap2.Init(enemies); // initialize minimap with our new enemy listss
-
-     
-    }
-
-    // Wait for SoundManager before playing music
-    private void Start()
-    {
-        SetState(GameState.Start);
-
-       
     }
 
     public GameState GetGameState()

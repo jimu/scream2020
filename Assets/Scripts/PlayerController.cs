@@ -113,7 +113,10 @@ public class PlayerController : MonoBehaviour
 
     void HideAreaOfEffect()
     {
-        areaOfEffectObject.SetActive(false);
+        if (areaOfEffectObject)
+        {
+            areaOfEffectObject.SetActive(false);
+        }
     }
 
     void DisplayAreaOfEffect(GameObject aoe)
@@ -280,6 +283,7 @@ public class PlayerController : MonoBehaviour
             GetComponent<DropLureAbility>().TriggerAbility();
             inventoryLures--;
             UpdateInventory();
+
         }
         else
         {
