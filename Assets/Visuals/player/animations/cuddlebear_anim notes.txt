@@ -1,0 +1,7 @@
+animations
+
+leap down.
+0-15 preparing
+15-60 falling
+60 hit ground
+60-90 landing
