@@ -5541,7 +5541,7 @@ PrefabInstance:
     - target: {fileID: 4890349910916309044, guid: d7d820896a41d6c4ba29ac126c130fb8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4890349910916309044, guid: d7d820896a41d6c4ba29ac126c130fb8,
         type: 3}
@@ -8711,7 +8711,7 @@ PrefabInstance:
     - target: {fileID: 5428936337487905095, guid: e42cad404f3bc354aa796d73d6cf4709,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5428936337487905095, guid: e42cad404f3bc354aa796d73d6cf4709,
         type: 3}
@@ -9601,7 +9601,7 @@ PrefabInstance:
     - target: {fileID: 4470326768077243655, guid: 2457d360ad1c08d429a3cc945d8be75f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4470326768077243655, guid: 2457d360ad1c08d429a3cc945d8be75f,
         type: 3}
@@ -10228,7 +10228,7 @@ PrefabInstance:
     - target: {fileID: 2743003233033285611, guid: 1d86bef27a1fca94a975796ceb35265f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2743003233033285611, guid: 1d86bef27a1fca94a975796ceb35265f,
         type: 3}
@@ -17019,7 +17019,7 @@ PrefabInstance:
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
         type: 3}
@@ -21561,7 +21561,7 @@ PrefabInstance:
     - target: {fileID: 6952929991667668410, guid: 15603f49fdea41d41a222adcb44ece0e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6952929991667668410, guid: 15603f49fdea41d41a222adcb44ece0e,
         type: 3}
@@ -28637,7 +28637,6 @@ GameObject:
   - component: {fileID: 1095210177}
   - component: {fileID: 1095210173}
   - component: {fileID: 1095210178}
-  - component: {fileID: 1095210179}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -28684,7 +28683,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1095210175
 MonoBehaviour:
@@ -28717,7 +28716,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095210172}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -28818,20 +28817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81fb1862a70af94fb8b8935d768aeb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1095210179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095210172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f81e2c3766f86488bfbb1eddee78bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subduedVolume: 0.3
-  music: event:/Music
 --- !u!1001 &1101853664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29112,7 +29097,7 @@ PrefabInstance:
     - target: {fileID: 4470326768077243655, guid: 2457d360ad1c08d429a3cc945d8be75f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4470326768077243655, guid: 2457d360ad1c08d429a3cc945d8be75f,
         type: 3}
@@ -33869,7 +33854,7 @@ PrefabInstance:
     - target: {fileID: 4890349910916309044, guid: d7d820896a41d6c4ba29ac126c130fb8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4890349910916309044, guid: d7d820896a41d6c4ba29ac126c130fb8,
         type: 3}
@@ -35024,8 +35009,6 @@ GameObject:
   - component: {fileID: 1389441506}
   - component: {fileID: 1389441510}
   - component: {fileID: 1389441509}
-  - component: {fileID: 1389441511}
-  - component: {fileID: 1389441512}
   - component: {fileID: 1389441513}
   - component: {fileID: 1389441514}
   m_Layer: 0
@@ -35042,7 +35025,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389441505}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1389441507
 Camera:
   m_ObjectHideFlags: 0
@@ -35099,7 +35082,7 @@ Transform:
   m_Children:
   - {fileID: 674480233}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1389441509
 MonoBehaviour:
@@ -35122,34 +35105,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389441505}
   m_CullTransparentMesh: 0
---- !u!114 &1389441511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389441505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f278601838144e99825332c718e6ecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletFire: event:/Placeholder SFX
-  music: event:/Music 2
---- !u!114 &1389441512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389441505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
-  ListenerNumber: -1
 --- !u!114 &1389441513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48783,7 +48738,7 @@ PrefabInstance:
     - target: {fileID: 5749115469972734902, guid: 646ecc4ebe246f44eaab75fb66fa8a0b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5749115469972734902, guid: 646ecc4ebe246f44eaab75fb66fa8a0b,
         type: 3}

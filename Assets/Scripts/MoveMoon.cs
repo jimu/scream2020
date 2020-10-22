@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 0414,0649
 public class MoveMoon : MonoBehaviour
 {
     [Tooltip("Starting position of moon")]

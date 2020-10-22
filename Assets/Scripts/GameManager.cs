@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayOneShot(AudioClip audioClip)
     {
+        Debug.Log("PlayOneShot:" + audioClip.name);
         audioSource.PlayOneShot(audioClip);
     }
     void SetCameraTarget(CameraTarget newCameraTarget)
@@ -200,6 +201,7 @@ public class GameManager : MonoBehaviour
 
     void SetState(GameState state)
     {
+        Debug.Log("SetState: " + state);
         // Hack so "help" on Title will have title music while pausing ingame will have GamePlay music
         if (this.state == GameState.Start && state == GameState.Paused)
             state = GameState.Help;
