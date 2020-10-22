@@ -81,15 +81,15 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Button0"))
                 OnInteractButtonPressed();
-            if (Input.GetKeyDown(KeyCode.J) || Input.GetButtonDown("Button1") || Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.J) || Input.GetButtonDown("Button1") /* || Input.GetMouseButtonDown(10) */)
                 DisplayAreaOfEffect(GetComponent<DropTotemAbility>().aoe);
-            if (Input.GetKeyUp(KeyCode.J) || Input.GetButtonUp("Button1") || Input.GetMouseButtonUp(0))
+            if (Input.GetKeyUp(KeyCode.J) || Input.GetButtonUp("Button1") /* || Input.GetMouseButtonUp(0) */)
                 OnTotemButtonPressed();
-            if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("Button2") || Input.GetMouseButtonDown(2))
+            if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("Button2") /* || Input.GetMouseButtonDown(2) */)
                 OnBranchButtonPressed();
-            if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button3") || Input.GetMouseButtonDown(1))
+            if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button3") /* || Input.GetMouseButtonDown(1) */)
                 DisplayAreaOfEffect(GetComponent<DropLureAbility>().aoe);
-            if (Input.GetKeyUp(KeyCode.L) || Input.GetButtonUp("Button3") || Input.GetMouseButtonUp(1))
+            if (Input.GetKeyUp(KeyCode.L) || Input.GetButtonUp("Button3") /* || Input.GetMouseButtonUp(1) */)
                 OnLureButtonPressed();
             if (Input.GetKeyDown(KeyCode.Q))
                 abilities[0].TriggerAbility();
