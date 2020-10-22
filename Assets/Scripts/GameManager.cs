@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject helpPanel;
     [SerializeField] GameObject startPanel;
+    [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject miniMap;
     [SerializeField] GameObject hud;
     [SerializeField] MiniMap2 miniMap2;
@@ -24,17 +25,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite[] borderGraphics;
     int currentBorderGraphic = 0;
     [SerializeField] Image borderGraphic;
+    
+
     bool miniMapVisible = true;
 
     List<GameObject> exits;
     
     public List<Enemy> enemies;
     public Action<Enemy> removeEnemyAction = null;
+    string endReason = "Error";
+
 
     [SerializeField] GameObject debugPanel;
-    [SerializeField] float fovZoomIn  = 60;
-    [SerializeField] float fovZoomOut = 90;
     [SerializeField] GameObject progressBar;
+
+    [Header("Game Designer Stettings")]
+    [Tooltip("How Long the game round lasts in seconds")]
+    [SerializeField] float sceneDuration;
+    [SerializeField] float fovZoomIn = 60;
+    [SerializeField] float fovZoomOut = 90;
+
 
     Camera mainCamera;
 
@@ -101,6 +111,10 @@ public class GameManager : MonoBehaviour
         removeEnemyAction(enemy);
         enemies.Remove(enemy);
         //Debug.Log("GameManager.RemoveEnemy: " + enemy.gameObject.name + " DONE");
+
+        if (enemies.Count < 1)
+            EndRound("All campers killed or escaped");
+
     }
 
     public void PlayOneShot(AudioClip audioClip)
@@ -141,41 +155,48 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape))
-            SetState(
-                state == GameState.Start ? GameState.Help :
-                state == GameState.Help ? GameState.Start :
-                state == GameState.Paused ? GameState.Playing :
-                GameState.Paused);
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.F2))
-            SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
-        if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F3))
-            SetTerrorLevel((terrorLevel + 1) % MaxTerrorLevel);
-        if (Input.GetKeyDown(KeyCode.F1))
-            debugPanel.SetActive(!debugPanel.activeSelf);
-        if (Input.GetKeyDown(KeyCode.F4))
-            CycleBorderGraphic();
-        if (Input.GetKeyDown(KeyCode.F5))
-            CycleCamperModel();
-        if (Input.GetKeyDown(KeyCode.F6))
-            ToggleMiniMap();
-        if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Plus))
-            IncrementFOV(-5);
-        if (Input.GetKeyDown(KeyCode.Minus))
-            IncrementFOV(5);
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        if (Input.GetButtonDown("Button5")) // right bumper
-            ToggleFOV();
-        if (Input.GetKeyDown(KeyCode.Home))
-          //  SoundManager.mainAudio.PlayOneShot("event:/Placeholder SFX");
-        if (Input.GetKeyDown(KeyCode.M))
-           SoundManager.mainAudio.ToggleMusic();
+        if (state == GameState.Playing)
+        {
+            if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Escape))
+                SetState(
+                    state == GameState.Start ? GameState.Help :
+                    state == GameState.Help ? GameState.Start :
+                    state == GameState.Paused ? GameState.Playing :
+                    GameState.Paused);
+            if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.F2))
+                SetCameraTarget((CameraTarget)(((int)cameraTarget + 1) % System.Enum.GetNames(typeof(CameraTarget)).Length));
+            if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F3))
+                SetTerrorLevel((terrorLevel + 1) % MaxTerrorLevel);
+            if (Input.GetKeyDown(KeyCode.F1))
+                debugPanel.SetActive(!debugPanel.activeSelf);
+            if (Input.GetKeyDown(KeyCode.F4))
+                CycleBorderGraphic();
+            if (Input.GetKeyDown(KeyCode.F5))
+                CycleCamperModel();
+            if (Input.GetKeyDown(KeyCode.F6))
+                ToggleMiniMap();
+            if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Plus))
+                IncrementFOV(-5);
+            if (Input.GetKeyDown(KeyCode.Minus))
+                IncrementFOV(5);
+            if (Input.GetKeyDown(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (Input.GetButtonDown("Button5")) // right bumper
+                ToggleFOV();
+            if (Input.GetKeyDown(KeyCode.Home))
+                //  SoundManager.mainAudio.PlayOneShot("event:/Placeholder SFX");
+                if (Input.GetKeyDown(KeyCode.M))
+                    SoundManager.mainAudio.ToggleMusic();
 
-       float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
-       if (analogZoom > 0.01 || analogZoom < -0.01)
-          IncrementFOV(analogZoom);
+            float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
+            if (analogZoom > 0.01 || analogZoom < -0.01)
+                IncrementFOV(analogZoom);
+
+            if (Time.timeSinceLevelLoad > sceneDuration)
+                EndRound("Out of time (" + Time.timeSinceLevelLoad + ")");
+        }
     }
+
     void CycleCamperModel()
     {
         useCylinder = !useCylinder;
@@ -219,9 +240,11 @@ public class GameManager : MonoBehaviour
         this.state = state;
 
         Time.timeScale = state == GameState.Playing ? 1f : 0f;
+        Debug.Log("  Time.timeScale=" + Time.timeScale);
 
         startPanel.SetActive(state == GameState.Start);
         helpPanel.SetActive(state == GameState.Help || state == GameState.Paused);
+        gameOverPanel.SetActive(state == GameState.GameOver);
         miniMap.SetActive(state == GameState.Playing);
         hud.SetActive(state == GameState.Playing);
 
@@ -234,9 +257,16 @@ public class GameManager : MonoBehaviour
 
 
       //  SoundManager.instance?.SetSubduedMusic(state == GameState.Paused);
-    //    SoundManager.instance?.PlayMusic(music);
+      //  SoundManager.instance?.PlayMusic(music);
 
     }
+
+    public void OnRestartPressed()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SetState(state == GameState.Help ? GameState.Start : GameState.Start);
+    }
+
 
     public void OnClosePressed()
     {
@@ -262,6 +292,11 @@ public class GameManager : MonoBehaviour
     {
         score = value;
         scoreText.text = value.ToString();
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 
     void IncrementFOV(float value)
@@ -292,4 +327,23 @@ public class GameManager : MonoBehaviour
     {
         progressBar.SetActive(false);
     }
+
+    public float GetSceneDuration()
+    {
+        return sceneDuration;
+    }
+
+    public string GetEndReason()
+    {
+        return endReason;
+    }
+
+    void EndRound(string reason)
+    {
+        Debug.Log("EndRound(" + reason + ")");
+        endReason = reason;
+        SetState(GameState.GameOver);
+    }
+
+
 }
