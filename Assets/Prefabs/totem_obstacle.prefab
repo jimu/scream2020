@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!208 &4011632312242079115
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2611077003007487733}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 4, y: 0.86800003, z: 4}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.083000004, y: 0.768, z: -0.020000001}
-  m_TimeToStationary: 0.5
 --- !u!1001 &3201016176769755604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,12 +67,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: totem_obstacle
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5624003004821346839, guid: 8df7aa47cdbb23f4fafdf4df81574cf4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8df7aa47cdbb23f4fafdf4df81574cf4, type: 3}
---- !u!1 &2611077003007487733 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 599018281148352289, guid: 8df7aa47cdbb23f4fafdf4df81574cf4,
-    type: 3}
-  m_PrefabInstance: {fileID: 3201016176769755604}
-  m_PrefabAsset: {fileID: 0}
