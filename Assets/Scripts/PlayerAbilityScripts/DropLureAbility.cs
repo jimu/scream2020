@@ -23,8 +23,7 @@ public class DropLureAbility : AbilityBase
             //animator.SetTrigger("Drop Branch");
             Vector3 pos = hit.point;
             pos.y = 0f;
-            GameObject lure = Instantiate(lurePrefab, pos, Quaternion.identity);
-
+            Instantiate(lurePrefab, pos, Quaternion.identity);
             GameManager.instance.PlayOneShot(sfx);
             return;
         }

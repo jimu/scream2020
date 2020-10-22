@@ -11,6 +11,7 @@ TagManager:
   - Log
   - Corpse
   - MiniMap
+  - Lure
   layers:
   - Default
   - TransparentFX

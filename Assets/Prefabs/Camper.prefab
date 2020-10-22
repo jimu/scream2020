@@ -145,8 +145,8 @@ GameObject:
   - component: {fileID: 4448774616168320919}
   - component: {fileID: 4448774616168320914}
   - component: {fileID: 4448774616168320915}
-  - component: {fileID: 5360087899298570024}
   - component: {fileID: -5177045014484552893}
+  - component: {fileID: 5360087899298570024}
   m_Layer: 0
   m_Name: Camper
   m_TagString: Enemy
@@ -240,7 +240,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -264,24 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95874371ef816544381a7c52e47af8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 0}
---- !u!114 &5360087899298570024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448774616168320936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4832570082869a64d961c72d85ac3697, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxDeath: {fileID: 8300000, guid: 068142bfaa06f014da3689fc7c097876, type: 3}
-  sfxHurt: {fileID: 8300000, guid: 9b5bf180ed2bceb40b8fec37da77f3c8, type: 3}
-  value: 1
-  health: 1
-  speed: 3.5
 --- !u!54 &-5177045014484552893
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -298,6 +280,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5360087899298570024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4448774616168320936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4832570082869a64d961c72d85ac3697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxDeath: {fileID: 8300000, guid: 068142bfaa06f014da3689fc7c097876, type: 3}
+  sfxHurt: {fileID: 8300000, guid: 9b5bf180ed2bceb40b8fec37da77f3c8, type: 3}
+  sfxEatLure: {fileID: 8300000, guid: d9c5d317a599beb468b847923bf2ef63, type: 3}
+  value: 1
+  health: 1
+  speed: 1.5
 --- !u!1001 &378991061
 PrefabInstance:
   m_ObjectHideFlags: 0

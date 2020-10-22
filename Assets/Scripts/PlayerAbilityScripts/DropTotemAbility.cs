@@ -47,9 +47,9 @@ public class DropTotemAbility : AbilityBase
 
     private IEnumerator DestroyTotem(GameObject totem)
     {
-        Debug.Log("DestroyTotem: " + totem.name);
+        //Debug.Log("DestroyTotem: " + totem.name);
         yield return new WaitForSeconds(totemDuration);
-        Debug.Log("DestroyTotem2: " + totem.name);
+        //Debug.Log("DestroyTotem2: " + totem.name);
         totem.GetComponent<NavMeshObstacle>().enabled = false;
         Destroy(totem);
         GameManager.instance.RecalculateNavigation();

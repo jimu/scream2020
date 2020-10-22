@@ -9,17 +9,23 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] AudioClip sfxDeath;
     [SerializeField] AudioClip sfxHurt;
+    [SerializeField] AudioClip sfxEatLure;
     [SerializeField] public int value = 1;
     [SerializeField] public int health = 1;
     [SerializeField] float speed = 3.5f;
     Animator animator = null;
-    NavMeshAgent navMeshAgent;
+    //NavMeshAgent navMeshAgent;
+    MoveTo moveTo;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.speed = speed;
+        moveTo = GetComponent<MoveTo>();
+    }
+
+    private void Start()
+    {
+        moveTo.SetSpeed(speed);
     }
 
     public void Damage(int hits)
@@ -34,12 +40,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Branch"))
         {
-            navMeshAgent.speed = 0f;
-            StartCoroutine(WaitAndDestroy(other.gameObject));
+            moveTo.SetSpeed(0f);
+            StartCoroutine(WaitAndDestroy(other.gameObject, 3f)); // 3 seconds
         }
         else if (other.gameObject.CompareTag("Exit"))
         {
@@ -47,15 +54,37 @@ public class Enemy : MonoBehaviour
             GameManager.instance.RemoveEnemy(this);
             Destroy(this.gameObject);
         }
+        else if (other.gameObject.CompareTag("Lure"))
+        {
+            StartCoroutine(WaitEatLureAndResume(other.gameObject, 10f, other.gameObject.GetComponent<Lure>().GetId()));
+        }
     }
 
-    private IEnumerator WaitAndDestroy(GameObject gameObject)
+    private IEnumerator WaitAndDestroy(GameObject gameObject, float delay)
     {
-        Debug.Log("WaitAndDestroy:begin");
-        yield return new WaitForSeconds(3f);
-        Debug.Log("WaitAndDestroy:end");
-        Destroy(gameObject);
-        navMeshAgent.speed = speed;
+        string name = gameObject.name;
+        Debug.Log("WaitAndDestroy:begin(" + name + ")");
+        yield return new WaitForSeconds(delay);
+        Debug.Log("WaitAndDestroy:begin(" + name + ")");
+        if (gameObject != null)
+            Destroy(gameObject);
+        moveTo.SetSpeed(speed);
+    }
+
+    private IEnumerator WaitEatLureAndResume(GameObject lureObject, float delay, int id)
+    {
+        string name = lureObject.name;
+
+        Debug.Log("WaitAndDestroy:begin(" + name + ")");
+        yield return new WaitForSeconds(delay);
+        Debug.Log("WaitAndDestroy:end(" + name + ")");
+
+        GameManager.instance.PlayOneShot(sfxEatLure);
+        if (gameObject != null)
+        {
+            lureObject.GetComponent<Lure>().LureExpiredRepath();
+            Destroy(lureObject);
+        }
     }
 
 
@@ -84,5 +113,26 @@ public class Enemy : MonoBehaviour
     {
         gameObject.GetComponent<MoveTo>().RecalculateNavigation();
     }
+
+
+    /** Go to lure if in range */
+    public void LureCheck(int id, Vector3 lurePosition, float range)
+    {
+        //Debug.Log("Enemy " + name + ": Checking for lure " + id);
+
+        if (Vector3.Distance(transform.position, lurePosition) <= range)
+        {
+            Debug.Log("LURE PLACE-ATTRACT: " + name);
+            moveTo.SetLure(id, lurePosition);
+        }
+    }
+
+    public void LureRelease(int id)
+    {
+        moveTo.CancelLure(id, speed);
+    }
+
+
+
 }
 
