@@ -33,7 +33,7 @@ public class DropTotemAbility : AbilityBase
             nmo.size = 
             */
             NavMeshObstacle nmo = totem.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
-            Debug.Log("nmo:" + nmo.name);
+
             nmo.shape = NavMeshObstacleShape.Capsule;
             nmo.radius = 4.0f;
             nmo.carving = true;

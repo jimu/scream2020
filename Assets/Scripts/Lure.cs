@@ -27,7 +27,7 @@ public class Lure : MonoBehaviour
     {
         id = ++lastId;
         Debug.Log("Lure Created: " + id);
-        transform.localScale = new Vector3(range, range, range);
+        transform.GetChild(0).localScale = new Vector3(range, range, range);
         Check();
     }
 
