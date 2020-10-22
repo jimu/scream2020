@@ -28831,7 +28831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subduedVolume: 0.3
-  music: event:/Music 2
+  music: event:/Music
 --- !u!1001 &1101853664
 PrefabInstance:
   m_ObjectHideFlags: 0
