@@ -73,36 +73,39 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float deltaX = Input.GetAxis("Horizontal") * playerSpeed * Time.deltaTime;
-        float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
-        transform.Translate(deltaX, 0f, deltaZ);
-
-        if (Input.GetKeyDown( KeyCode.Space) || Input.GetButtonDown("Button0"))
-            OnInteractButtonPressed();
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetButtonDown("Button1") || Input.GetMouseButtonDown(0))
-            DisplayAreaOfEffect(GetComponent<DropTotemAbility>().aoe);
-        if (Input.GetKeyUp(KeyCode.J) || Input.GetButtonUp("Button1") || Input.GetMouseButtonUp(0))
-            OnTotemButtonPressed();
-        if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("Button2") || Input.GetMouseButtonDown(2))
-            OnBranchButtonPressed();
-        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button3") || Input.GetMouseButtonDown(1))
-            DisplayAreaOfEffect(GetComponent<DropLureAbility>().aoe);
-        if (Input.GetKeyUp(KeyCode.L) || Input.GetButtonUp("Button3") || Input.GetMouseButtonUp(1))
-            OnLureButtonPressed();
-        if (Input.GetKeyDown(KeyCode.Q))
-            abilities[0].TriggerAbility();
-
-        if (isLooting)
+        if (GameManager.instance.GetGameState() == GameState.Playing)
         {
-            if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Button0"))
-                EndLooting();
-            if (Time.time > lootFinishTime)
+            float deltaX = Input.GetAxis("Horizontal") * playerSpeed * Time.deltaTime;
+            float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
+            transform.Translate(deltaX, 0f, deltaZ);
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Button0"))
+                OnInteractButtonPressed();
+            if (Input.GetKeyDown(KeyCode.J) || Input.GetButtonDown("Button1") || Input.GetMouseButtonDown(0))
+                DisplayAreaOfEffect(GetComponent<DropTotemAbility>().aoe);
+            if (Input.GetKeyUp(KeyCode.J) || Input.GetButtonUp("Button1") || Input.GetMouseButtonUp(0))
+                OnTotemButtonPressed();
+            if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("Button2") || Input.GetMouseButtonDown(2))
+                OnBranchButtonPressed();
+            if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Button3") || Input.GetMouseButtonDown(1))
+                DisplayAreaOfEffect(GetComponent<DropLureAbility>().aoe);
+            if (Input.GetKeyUp(KeyCode.L) || Input.GetButtonUp("Button3") || Input.GetMouseButtonUp(1))
+                OnLureButtonPressed();
+            if (Input.GetKeyDown(KeyCode.Q))
+                abilities[0].TriggerAbility();
+
+            if (isLooting)
             {
-                GameManager.instance.PlayOneShot(sfxLootComplete);
-                EndLooting();
-                Debug.Log("Got a totem");
-                Destroy(enemyBeingLooted);
-                enemyBeingLooted = null;
+                if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Button0"))
+                    EndLooting();
+                if (Time.time > lootFinishTime)
+                {
+                    GameManager.instance.PlayOneShot(sfxLootComplete);
+                    EndLooting();
+                    Debug.Log("Got a totem");
+                    Destroy(enemyBeingLooted);
+                    enemyBeingLooted = null;
+                }
             }
         }
 
@@ -198,7 +201,7 @@ public class PlayerController : MonoBehaviour
         if (closestObject != null && parent != closestObject.transform)
         {
             plumbob.transform.SetParent(closestObject.transform, false);
-            GameManager.instance.PlayOneShot(sfxSnapToTarget);
+            GameManager.instance.PlayOneShotIfGamePlay(sfxSnapToTarget);
             //Debug.Log("Selected: " + closestObject.name);
         }
 

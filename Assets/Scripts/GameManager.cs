@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 #pragma warning disable 0649
 
-enum GameState { Invalid, Start, Playing, Paused, Help, GameOver, HighScores }
+public enum GameState { Invalid, Start, Playing, Paused, Help, GameOver, HighScores }
 
 public class GameManager : MonoBehaviour
 {
@@ -94,6 +94,11 @@ public class GameManager : MonoBehaviour
        
     }
 
+    public GameState GetGameState()
+    {
+        return state;
+    }
+
     public void RemoveEnemy(Enemy enemy)
     {
        // Debug.Log("GameManager.RemoveEnemy: " + enemy.gameObject.name);
@@ -105,9 +110,18 @@ public class GameManager : MonoBehaviour
 
     public void PlayOneShot(AudioClip audioClip)
     {
-        Debug.Log("PlayOneShot:" + audioClip.name);
+        //Debug.Log("PlayOneShot:" + audioClip.name);
         audioSource.PlayOneShot(audioClip);
     }
+
+    public void PlayOneShotIfGamePlay(AudioClip audioClip)
+    {
+        if (state == GameState.Playing)
+            PlayOneShot(audioClip);
+    }
+
+
+
     void SetCameraTarget(CameraTarget newCameraTarget)
     {
         cameraTarget = newCameraTarget;
