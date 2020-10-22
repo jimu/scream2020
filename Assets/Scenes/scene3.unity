@@ -3506,6 +3506,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1868625796}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &162306481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162306482}
+  m_Layer: 5
+  m_Name: MoonStartingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &162306482
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162306481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2095950402}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5083333, y: 0.22666667}
+  m_AnchorMax: {x: 0.5083333, y: 0.22666667}
+  m_AnchoredPosition: {x: -83.5, y: 44.9}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &174157295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7587,7 +7622,7 @@ GameObject:
   - component: {fileID: 328929775}
   - component: {fileID: 328929774}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: AbilityButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21483,6 +21518,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lure
       objectReference: {fileID: 0}
+    - target: {fileID: 1923839636322441711, guid: 15603f49fdea41d41a222adcb44ece0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6952929991667668410, guid: 15603f49fdea41d41a222adcb44ece0e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35108,6 +35148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
   ListenerNumber: -1
 --- !u!114 &1389441513
 MonoBehaviour:
@@ -35337,6 +35378,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1391574978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1399336996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399336997}
+  m_Layer: 5
+  m_Name: MoonEndingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1399336997
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399336996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2095950402}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5083333, y: 0.22666667}
+  m_AnchorMax: {x: 0.5083333, y: 0.22666667}
+  m_AnchoredPosition: {x: 101.7, y: 24.9}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1403593258
 GameObject:
   m_ObjectHideFlags: 0
@@ -35863,6 +35939,7 @@ GameObject:
   - component: {fileID: 1428560346}
   - component: {fileID: 1428560348}
   - component: {fileID: 1428560347}
+  - component: {fileID: 1428560349}
   m_Layer: 5
   m_Name: Moon
   m_TagString: Untagged
@@ -35926,6 +36003,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428560345}
   m_CullTransparentMesh: 0
+--- !u!114 &1428560349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428560345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e2190124de3c848b4318ab09d7e661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {fileID: 162306482}
+  endPosition: {fileID: 1399336997}
+  duration: 150
 --- !u!1001 &1433387764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49902,7 +49994,7 @@ GameObject:
   - component: {fileID: 2095950404}
   - component: {fileID: 2095950403}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ClockPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49922,6 +50014,8 @@ RectTransform:
   - {fileID: 1032512628}
   - {fileID: 928916675}
   - {fileID: 1428560346}
+  - {fileID: 162306482}
+  - {fileID: 1399336997}
   m_Father: {fileID: 58290351}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
