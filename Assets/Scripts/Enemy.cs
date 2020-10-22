@@ -91,6 +91,7 @@ public class Enemy : MonoBehaviour
     public void AddFear(int n)
     {
         SetFear(fear + n);
+        CancelWandering();
     }
 
     public void Damage(int hits)
