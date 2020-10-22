@@ -12,6 +12,7 @@ TagManager:
   - Corpse
   - MiniMap
   - Lure
+  - Loot
   layers:
   - Default
   - TransparentFX

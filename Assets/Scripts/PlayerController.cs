@@ -135,7 +135,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Hit: " + o.name);
             if (o.CompareTag("Enemy"))
                 DamageEnemyObject(o, 2);
-            else if (o.CompareTag("Corpse")) 
+            else if (o.CompareTag("Corpse"))
+                LootCorpse(o);
+            else if (o.CompareTag("Loot"))
                 LootCorpse(o);
             else if (o.CompareTag("Log"))
                 o.GetComponent<Log>().Block();
