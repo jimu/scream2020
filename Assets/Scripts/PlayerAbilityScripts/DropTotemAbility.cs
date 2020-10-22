@@ -14,6 +14,15 @@ public class DropTotemAbility : AbilityBase
     [SerializeField] AudioClip sfx;
     [SerializeField] float totemDuration = 15f;
     [SerializeField] public GameObject aoe;
+    [SerializeField] bool isBlocking = false;
+    
+
+    [SerializeField] bool causesFearOnApproach = true;
+
+    [SerializeField] bool causesFearOnDrop = true;
+    
+    [SerializeField] float effectRadius = 4.0f;
+    [SerializeField] float effectRadiusOnDrop = 4.0f;
     //Audio System?
     public override void Ability()
     {
@@ -32,11 +41,27 @@ public class DropTotemAbility : AbilityBase
             NavMeshObstacle nmo = totem.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
             nmo.size = 
             */
-            NavMeshObstacle nmo = totem.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
+            if (isBlocking)
+            {
+                NavMeshObstacle nmo = totem.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
 
-            nmo.shape = NavMeshObstacleShape.Capsule;
-            nmo.radius = 4.0f;
-            nmo.carving = true;
+                nmo.shape = NavMeshObstacleShape.Capsule;
+                nmo.radius = effectRadius;
+                nmo.carving = true;
+            }
+            if (causesFearOnDrop)
+            {
+                foreach(Enemy enemy in GameManager.instance.enemies)
+                    if (Vector3.Distance(enemy.transform.position, transform.position) < effectRadiusOnDrop)
+                        enemy.AddFear(1);
+            }
+
+            if (causesFearOnApproach)
+            {
+                SphereCollider sphereCollider = totem.AddComponent(typeof(SphereCollider)) as SphereCollider;
+
+                sphereCollider.radius = effectRadius;
+            }
 
             StartCoroutine(DestroyTotem(totem));
 
@@ -49,8 +74,12 @@ public class DropTotemAbility : AbilityBase
     {
         //Debug.Log("DestroyTotem: " + totem.name);
         yield return new WaitForSeconds(totemDuration);
-        //Debug.Log("DestroyTotem2: " + totem.name);
-        totem.GetComponent<NavMeshObstacle>().enabled = false;
+        
+        NavMeshObstacle nmo = totem.GetComponent<NavMeshObstacle>();
+        
+        if (nmo)
+            nmo.enabled = false;
+        
         Destroy(totem);
         GameManager.instance.RecalculateNavigation();
     }

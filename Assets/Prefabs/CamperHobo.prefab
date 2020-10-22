@@ -151,6 +151,9 @@ MonoBehaviour:
   value: 1
   health: 1
   speed: 3.5
+  sanity: 100
+  fearPrefab: {fileID: 898320914886923001, guid: 55e077c255252e440a110bc4ba583bca,
+    type: 3}
 --- !u!54 &-5177045014484552893
 Rigidbody:
   m_ObjectHideFlags: 0

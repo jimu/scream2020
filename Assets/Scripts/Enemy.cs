@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,9 +14,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int value = 1;
     [SerializeField] public int health = 1;
     [SerializeField] float speed = 3.5f;
+    [SerializeField] int fear = 1;
+    [SerializeField] Transform fearPrefab;
+    FearIcon fearIcon;
+
+
     Animator animator = null;
     //NavMeshAgent navMeshAgent;
     MoveTo moveTo;
+
+    public event Action<float> OnFearChanged = delegate { };
+
 
     private void Awake()
     {
@@ -26,11 +35,28 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         moveTo.SetSpeed(speed);
+        fearIcon = Instantiate(fearPrefab).GetComponent<FearIcon>();
+        SetFear(fear);
+    }
+
+    private void Update()
+    {
+        if (GameManager.instance.GetGameState() == GameState.Playing)
+            fearIcon.MoveTo(transform.position);
+    }
+    void SetFear(int n)
+    {
+        fearIcon.SetFear(n);
+    }
+
+    public void AddFear(int n)
+    {
+        SetFear(fear + n);
     }
 
     public void Damage(int hits)
     {
-        if (health > 0)
+        if (health > 0 && fear > 0)
         {
             health -= hits;
             if (health <= 0)
@@ -57,6 +83,11 @@ public class Enemy : MonoBehaviour
         else if (other.gameObject.CompareTag("Lure"))
         {
             StartCoroutine(WaitEatLureAndResume(other.gameObject, 10f, other.gameObject.GetComponent<Lure>().GetId()));
+        }
+        else if (other.gameObject.CompareTag("Totem"))
+        {
+            Debug.Log("Fear");
+            AddFear(1);
         }
     }
 
@@ -98,7 +129,7 @@ public class Enemy : MonoBehaviour
 
         if (animator == null)
         {   // cylinder
-            float rotation = Random.Range(0f, 360f);
+            float rotation = UnityEngine.Random.Range(0f, 360f);
             transform.rotation = Quaternion.Euler(90, rotation, 0);
             transform.Translate(0, -1f, 0, Space.World);
         }
@@ -131,8 +162,6 @@ public class Enemy : MonoBehaviour
     {
         moveTo.CancelLure(id, speed);
     }
-
-
 
 }
 

@@ -11,11 +11,12 @@ public class HealthBarSlider : MonoBehaviour
 
     private void Awake()
     {
-       // GetComponentInParent<Enemy>().OnHitsChanged += HitsChanged;
+       GetComponentInParent<Enemy>().OnFearChanged += FearChanged;
         slider = GetComponent<Slider>();
         fill = transform.Find("Fill").GetComponent<Image>();
+        FearChanged(50);
     }
-    void HitsChanged(float percent)
+    void FearChanged(float percent)
     {
         slider.value = percent;
         fill.color = gradient.Evaluate(percent);

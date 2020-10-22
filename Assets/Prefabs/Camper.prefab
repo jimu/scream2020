@@ -298,6 +298,10 @@ MonoBehaviour:
   value: 1
   health: 1
   speed: 1.5
+  sanity: 100
+  fearPrefab: {fileID: 898320914886923001, guid: 55e077c255252e440a110bc4ba583bca,
+    type: 3}
+  fearIcon: {fileID: 898320914886923001, guid: 55e077c255252e440a110bc4ba583bca, type: 3}
 --- !u!1001 &378991061
 PrefabInstance:
   m_ObjectHideFlags: 0

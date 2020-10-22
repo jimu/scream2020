@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: totem_obstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 599018281148352289, guid: 8df7aa47cdbb23f4fafdf4df81574cf4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Totem
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4011632312242079115, guid: 8df7aa47cdbb23f4fafdf4df81574cf4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8df7aa47cdbb23f4fafdf4df81574cf4, type: 3}
