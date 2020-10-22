@@ -48,9 +48,9 @@ public class MiniMap2 : MonoBehaviour
         //Debug.Log("MiniMap2.RemoveEnemy:" + enemy.gameObject.name + " b4:"+ enemies.Count + "/" + poolXcount);
         //foreach (Enemy e in enemies)
         //    Debug.Log(e.gameObject.name); enemies.Remove(enemy);
-        poolXcount--;
-        Destroy(poolX[poolXcount].gameObject);
-        poolX[poolXcount] = null;
+        //poolXcount--;
+        //Destroy(poolX[poolXcount].gameObject);
+        //poolX[poolXcount] = null;
         //Debug.Log("MiniMap2.RemoveEnemy:" + enemy.gameObject.name + " After:" + enemies.Count + "/" + poolXcount);
         //foreach (Enemy e in enemies)
         //    Debug.Log(e.gameObject.name);
@@ -79,8 +79,13 @@ public class MiniMap2 : MonoBehaviour
             poolX[i].anchoredPosition = new Vector2(pos.x + scaleHackX, pos.z + scaleHackY);
             i++;
         }
+
+        while (i < poolXcount)
+            poolX[--poolXcount].gameObject.SetActive(false);
+
         playerMarker.anchoredPosition = new Vector2(player.position.x * scaleHackMult + scaleHackX, player.position.z * scaleHackMult + scaleHackY);
     }
+    
 
     const float scaleHackMult = 2.6f;  // scene3
     const float scaleHackX = 94f;

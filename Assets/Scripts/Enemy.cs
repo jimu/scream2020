@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed = 3.5f;
     [SerializeField] int fear = 1;
     [SerializeField] Transform fearPrefab;
+    
+    [Tooltip("All enemies within this distance from a kill are scared")]
+    [SerializeField] float fearDistanceFromKill = 15;
     FearIcon fearIcon;
 
 
@@ -41,12 +44,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.GetGameState() == GameState.Playing)
+        if (GameManager.instance.GetGameState() == GameState.Playing && fearIcon != null)
             fearIcon.MoveTo(transform.position);
     }
     void SetFear(int n)
     {
-        fearIcon.SetFear(n);
+        fear = n;
+        fearIcon.SetFear(fear);
     }
 
     public void AddFear(int n)
@@ -78,7 +82,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Enemy escaped:" + gameObject.name);
             GameManager.instance.RemoveEnemy(this);
-            Destroy(this.gameObject);
+            DestroyMe();
         }
         else if (other.gameObject.CompareTag("Lure"))
         {
@@ -89,6 +93,13 @@ public class Enemy : MonoBehaviour
             Debug.Log("Fear");
             AddFear(1);
         }
+    }
+
+    public void DestroyMe()
+    {
+        if (this.fearIcon != null)
+            Destroy(this.fearIcon.gameObject);
+        Destroy(this.gameObject);
     }
 
     private IEnumerator WaitAndDestroy(GameObject gameObject, float delay)
@@ -121,11 +132,13 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        GameManager.instance.AddScore(value);
+        //Debug.Log("Score: value " + value + "  X  fear " + fear);
+        GameManager.instance.AddScore(value * fear);
         GetComponent<NavMeshAgent>().enabled = false;
         GameManager.instance.GetComponent<AudioSource>().PlayOneShot(sfxDeath);
         gameObject.tag = "Corpse";
         GameManager.instance.RemoveEnemy(this);
+        Destroy(fearIcon);
 
         if (animator == null)
         {   // cylinder
@@ -138,7 +151,17 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Dead", true);
             gameObject.GetComponent<CapsuleCollider>().radius = 2.0f;
         }
+
+        ScareNearbyEnemies(transform.position, fearDistanceFromKill);
     }
+    
+    void ScareNearbyEnemies(Vector3 pos, float distance)
+    {
+        foreach (Enemy enemy in GameManager.instance.enemies)
+            if (Vector3.Distance(enemy.transform.position, pos) < distance)
+                enemy.AddFear(1);
+    }
+
 
     public void RecalculateNavigation()
     {
