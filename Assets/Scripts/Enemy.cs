@@ -16,7 +16,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed = 3.5f;
     [SerializeField] int fear = 1;
     [SerializeField] Transform fearPrefab;
-    
+
+    [SerializeField] bool isWandering = true;
+
+    [SerializeField] float minWanderTime = 5.0f;
+    [SerializeField] float maxWanderTime = 30.0f;
+    [SerializeField] float wanderPhaseDuration = 60.0f;
+
+    float wanderExpireTime;
+    Vector3 wanderDestination;
+
     [Tooltip("All enemies within this distance from a kill are scared")]
     [SerializeField] float fearDistanceFromKill = 15;
     FearIcon fearIcon;
@@ -40,13 +49,39 @@ public class Enemy : MonoBehaviour
         moveTo.SetSpeed(speed);
         fearIcon = Instantiate(fearPrefab).GetComponent<FearIcon>();
         SetFear(fear);
+        if (isWandering)
+            SetRandomWanderTimeAndDestination();
     }
+
+    void SetRandomWanderTimeAndDestination()
+    {
+        wanderExpireTime = Time.time + UnityEngine.Random.Range(minWanderTime, maxWanderTime);
+        wanderDestination = GameManager.instance.getRandomWanderPoint();
+        moveTo.SetWander(wanderDestination);
+    }
+
+    public static void CancelAllWandering()
+    {
+        foreach (Enemy enemy in GameManager.instance.enemies)
+            enemy.CancelWandering();
+    }
+
+
+    void CancelWandering()
+    {
+        isWandering = false;
+        moveTo.CancelWander();
+    }
+
 
     private void Update()
     {
         if (GameManager.instance.GetGameState() == GameState.Playing && fearIcon != null)
             fearIcon.MoveTo(transform.position);
+        if (isWandering && Time.time > wanderExpireTime)
+            SetRandomWanderTimeAndDestination();
     }
+
     void SetFear(int n)
     {
         fear = n;
@@ -85,14 +120,11 @@ public class Enemy : MonoBehaviour
             DestroyMe();
         }
         else if (other.gameObject.CompareTag("Lure"))
-        {
             StartCoroutine(WaitEatLureAndResume(other.gameObject, 10f, other.gameObject.GetComponent<Lure>().GetId()));
-        }
         else if (other.gameObject.CompareTag("Totem"))
-        {
-            Debug.Log("Fear");
             AddFear(1);
-        }
+        else if (other.gameObject.CompareTag("WanderPoint") && other.gameObject.transform.position == wanderDestination)
+            SetRandomWanderTimeAndDestination();
     }
 
     public void DestroyMe()

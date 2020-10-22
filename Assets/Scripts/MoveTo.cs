@@ -10,6 +10,8 @@ public class MoveTo : MonoBehaviour
     int lureId = -1;
     Vector3 exitPosition = default;
     Vector3 lurePosition = default;
+    Vector3 wanderPosition = default;
+    bool isWandering = false;
 
 
     void Awake()
@@ -17,6 +19,19 @@ public class MoveTo : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
+
+    public void SetWander(Vector3 destination)
+    {
+        isWandering = true;
+        wanderPosition = destination;
+        navMeshAgent.SetDestination(currentDestination());
+    }
+
+    public void CancelWander()
+    {
+        isWandering = false;
+        navMeshAgent.SetDestination(currentDestination());
+    }
 
 
     public void SetExitPosition(Vector3 pos)
@@ -51,7 +66,9 @@ public class MoveTo : MonoBehaviour
 
     Vector3 currentDestination()
     {
-        return lureId >= 0 ? lurePosition : exitPosition;
+        return lureId >= 0 ? lurePosition : 
+            isWandering ? wanderPosition :
+            exitPosition;
     }
 
     public void RecalculateNavigation()

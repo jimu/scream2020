@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite[] borderGraphics;
     int currentBorderGraphic = 0;
     [SerializeField] Image borderGraphic;
-    
+    [SerializeField] float wanderPhaseDuration = 60.0f;
+
 
     bool miniMapVisible = true;
 
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fovZoomIn = 60;
     [SerializeField] float fovZoomOut = 90;
 
+    Vector3[] wanderPoints;
 
     Camera mainCamera;
 
@@ -69,6 +71,17 @@ public class GameManager : MonoBehaviour
         GameManager.instance = this;
         audioSource = GetComponent<AudioSource>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("WanderPoint");
+        wanderPoints = new Vector3[objects.Length];
+        for (int i = 0; i < objects.Length; ++i)
+            wanderPoints[i] = objects[i].transform.position;
+    }
+
+
+    public Vector3 getRandomWanderPoint()
+    {
+        return wanderPoints[UnityEngine.Random.Range(0, wanderPoints.Length)];
     }
 
     // wait as long as posible so enemies can awake
@@ -193,7 +206,10 @@ public class GameManager : MonoBehaviour
                 IncrementFOV(analogZoom);
 
             if (Time.timeSinceLevelLoad > sceneDuration)
-                EndRound("Out of time (" + Time.timeSinceLevelLoad + ")");
+                EndRound("Out of time");
+
+            if (Time.timeSinceLevelLoad > wanderPhaseDuration)
+                Enemy.CancelAllWandering();
         }
     }
 
