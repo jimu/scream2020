@@ -90,6 +90,8 @@ public class Enemy : MonoBehaviour
     {
         fear = n;
         fearIcon.SetFear(fear);
+        moveTo.SetSpeed(speed + fear * 0.2f);
+
     }
 
     public void AddFear(int n)
