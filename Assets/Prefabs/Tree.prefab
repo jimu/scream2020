@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfx: {fileID: 8300000, guid: d9a3b0f4b1508274c962cbfb51606e68, type: 3}
+  fearDistanceFromTreeFall: 4
 --- !u!136 &-1276359136517865401
 CapsuleCollider:
   m_ObjectHideFlags: 0

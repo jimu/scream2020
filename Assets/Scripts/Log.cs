@@ -12,7 +12,7 @@ public class Log : MonoBehaviour
     [Header("Log falls north by default.  To cross path, Adjust Y or rotate in scene")]
     //[SerializeField] Vector3 blockingAngle = new Vector3(90, 0, 0);
     [SerializeField] AudioClip sfx;
-    [SerializeField] float fearDistanceFromTreeFall = 4f;
+    [SerializeField] float fearDistanceFromTreeFall = 6f;
 
 
     public bool IsBlocking()

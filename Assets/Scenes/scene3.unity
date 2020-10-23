@@ -7002,6 +7002,9 @@ MonoBehaviour:
   interactionIconTree: {fileID: 21300000, guid: 5925e9f5e9eb3024e8f273edbc5b54ef,
     type: 3}
   isInteractionDirty: 1
+  initialInventoryLures: 0
+  initialInventoryTotems: 0
+  initialInventoryBranches: 0
   lootDuration: 2
   inventoryText: {fileID: 873373191}
   abilities: []
@@ -8529,6 +8532,11 @@ PrefabInstance:
         type: 3}
       propertyPath: blockingAngle.y
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608514741634613639, guid: 232b88dbeaecb2445a7d5cdb78345645,
+        type: 3}
+      propertyPath: fearDistanceFromTreeFall
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7684424064246160080, guid: 232b88dbeaecb2445a7d5cdb78345645,
         type: 3}
@@ -15527,6 +15535,11 @@ PrefabInstance:
       propertyPath: blockingAngle.y
       value: 110
       objectReference: {fileID: 0}
+    - target: {fileID: 4608514741634613639, guid: 232b88dbeaecb2445a7d5cdb78345645,
+        type: 3}
+      propertyPath: fearDistanceFromTreeFall
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7684424064246160080, guid: 232b88dbeaecb2445a7d5cdb78345645,
         type: 3}
       propertyPath: m_Name
@@ -17251,6 +17264,11 @@ PrefabInstance:
         type: 3}
       propertyPath: blockingAngle.y
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608514741634613639, guid: 232b88dbeaecb2445a7d5cdb78345645,
+        type: 3}
+      propertyPath: fearDistanceFromTreeFall
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7684424064246160080, guid: 232b88dbeaecb2445a7d5cdb78345645,
         type: 3}
@@ -26377,7 +26395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &936619984
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33649,6 +33667,11 @@ PrefabInstance:
         type: 3}
       propertyPath: blockingAngle.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608514741634613639, guid: 232b88dbeaecb2445a7d5cdb78345645,
+        type: 3}
+      propertyPath: fearDistanceFromTreeFall
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7684424064246160080, guid: 232b88dbeaecb2445a7d5cdb78345645,
         type: 3}
@@ -41692,6 +41715,11 @@ PrefabInstance:
       propertyPath: blockingAngle.y
       value: 165
       objectReference: {fileID: 0}
+    - target: {fileID: 4608514741634613639, guid: 232b88dbeaecb2445a7d5cdb78345645,
+        type: 3}
+      propertyPath: fearDistanceFromTreeFall
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7684424064246160080, guid: 232b88dbeaecb2445a7d5cdb78345645,
         type: 3}
       propertyPath: m_Name
@@ -43774,6 +43802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: blockingAngle.y
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608514741634613639, guid: 232b88dbeaecb2445a7d5cdb78345645,
+        type: 3}
+      propertyPath: fearDistanceFromTreeFall
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7684424064246160080, guid: 232b88dbeaecb2445a7d5cdb78345645,
         type: 3}
@@ -48198,7 +48231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1868770916
 RectTransform:
   m_ObjectHideFlags: 0

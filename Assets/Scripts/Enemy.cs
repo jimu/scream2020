@@ -199,6 +199,8 @@ public class Enemy : MonoBehaviour
     
     static public void ScareNearbyEnemies(Vector3 pos, float distance)
     {
+        Debug.Log("ScareNearbyEnemies(" + pos + ", " + distance + ")");
+        pos.y = 1f;
         foreach (Enemy enemy in GameManager.instance.enemies)
             if (Vector3.Distance(enemy.transform.position, pos) < distance)
                 enemy.AddFear(1);
