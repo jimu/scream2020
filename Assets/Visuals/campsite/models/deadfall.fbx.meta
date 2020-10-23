@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: deadfall
-    second: {fileID: 2100000, guid: 8d5e9295ed8fb2440ae1b9513121b4b6, type: 2}
+    second: {fileID: 2100000, guid: a18eedc8904fd234f9fbcc2bfb8a5c3c, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
