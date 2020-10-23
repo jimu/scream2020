@@ -178,7 +178,8 @@ public class Enemy : MonoBehaviour
         fearIcon.gameObject.SetActive(false);
         Destroy(fearIcon);
         GameManager.instance.ResetInteractionIcon();
-        Debug.Log("RESET II");
+        // Debug.Log("RESET II");
+        GameManager.instance.SetDirty();
 
 
         if (animator == null)
@@ -196,7 +197,7 @@ public class Enemy : MonoBehaviour
         ScareNearbyEnemies(transform.position, fearDistanceFromKill);
     }
     
-    void ScareNearbyEnemies(Vector3 pos, float distance)
+    static public void ScareNearbyEnemies(Vector3 pos, float distance)
     {
         foreach (Enemy enemy in GameManager.instance.enemies)
             if (Vector3.Distance(enemy.transform.position, pos) < distance)

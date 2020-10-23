@@ -23,12 +23,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Sprite interactionIconTree;
     [SerializeField] bool isInteractionDirty = true;
 
+    [SerializeField] int initialInventoryLures;
+    [SerializeField] int initialInventoryTotems;
+    [SerializeField] int initialInventoryBranches;
+
     GameObject areaOfEffectObject;
     int attackSoundIndex = 0;
 
-    int inventoryLures = 5;
-    int inventoryTotems = 5;
-    int inventoryBranches = 5;
+    int inventoryLures = 0;
+    int inventoryTotems = 0;
+    int inventoryBranches = 0;
 
     // Looting
     bool isLooting = false;
@@ -42,6 +46,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] UnityEngine.UI.Text inventoryText = null;
 
+
+    
+
+    
     public void SetDirty()
     {
         isInteractionDirty = true;
@@ -75,6 +83,10 @@ public class PlayerController : MonoBehaviour
 
         // hack - update camra's follow script (because it's don't destroy on load now)
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Follow>().Init();
+
+        inventoryLures = initialInventoryLures;
+        inventoryTotems = initialInventoryTotems;
+        inventoryBranches = initialInventoryBranches;
     }
 
 
@@ -113,11 +125,11 @@ public class PlayerController : MonoBehaviour
             if (isLooting)
             {
                 if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Button0"))
-                    EndLooting();
+                    EndLooting(false);
                 if (Time.time > lootFinishTime)
                 {
                     GameManager.instance.PlayOneShot(sfxLootComplete);
-                    EndLooting();
+                    EndLooting(true);
                     Debug.Log("Got a totem");
                     Destroy(enemyBeingLooted);
                     enemyBeingLooted = null;
@@ -414,6 +426,7 @@ public class PlayerController : MonoBehaviour
             GetComponent<DropBranchAbility>().TriggerAbility();
             inventoryBranches--;
             UpdateInventory();
+            GameManager.instance.SetDirty();
         }
         else
         {
@@ -470,14 +483,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void EndLooting()
+    public void EndLooting(bool finished)
     {
         isLooting = false;
         GameManager.instance.StopProgressBar();
 
-        inventoryBranches++;
-        inventoryLures++;
-        inventoryTotems++;
+        if (finished)
+        {
+            inventoryBranches++;
+            inventoryLures++;
+            inventoryTotems++;
+            GameManager.instance.SetDirty();
+        }
         UpdateInventory();
     }
 
