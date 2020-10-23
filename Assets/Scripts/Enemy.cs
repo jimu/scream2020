@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
 
     void SetRandomWanderTimeAndDestination()
     {
-        wanderExpireTime = Time.time + UnityEngine.Random.Range(minWanderTime, maxWanderTime);
+        wanderExpireTime = Time.timeSinceLevelLoad+ UnityEngine.Random.Range(minWanderTime, maxWanderTime);
         wanderDestination = GameManager.instance.getRandomWanderPoint();
         moveTo.SetWander(wanderDestination);
     }
@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance.GetGameState() == GameState.Playing && fearIcon != null)
             fearIcon.MoveTo(transform.position);
-        if (isWandering && Time.time > wanderExpireTime)
+        if (isWandering && Time.timeSinceLevelLoad > wanderExpireTime)
             SetRandomWanderTimeAndDestination();
     }
 

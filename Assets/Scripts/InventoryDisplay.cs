@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InventoryDisplay : MonoBehaviour
 {
-
     [SerializeField] UnityEngine.UI.Button lureButton;
     [SerializeField] UnityEngine.UI.Button totemButton;
     [SerializeField] UnityEngine.UI.Button branchButton;

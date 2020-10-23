@@ -27,6 +27,6 @@ public class MoveMoon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(startPos, endPos, Time.time / duration);
+        transform.position = Vector3.Lerp(startPos, endPos, Time.timeSinceLevelLoad / duration);
     }
 }

@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float sceneDuration;
     [SerializeField] float fovZoomIn = 60;
     [SerializeField] float fovZoomOut = 90;
+    public float t;
 
 
     Vector3[] wanderPoints;
@@ -227,6 +228,9 @@ public class GameManager : MonoBehaviour
 
             if (Time.timeSinceLevelLoad > sceneDuration)
                 EndRound("Out of time");
+
+            Debug.Log("Time.timeSinceLevelLoad:" + Time.timeSinceLevelLoad + "  sd:" + sceneDuration);
+
 
             if (Time.timeSinceLevelLoad > wanderPhaseDuration)
                 Enemy.CancelAllWandering();
