@@ -390,4 +390,6 @@ public class GameManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ResetInteractionIcon();
         SetDirty();
     }
+
+
 }

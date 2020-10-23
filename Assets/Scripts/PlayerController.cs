@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int initialInventoryLures;
     [SerializeField] int initialInventoryTotems;
     [SerializeField] int initialInventoryBranches;
+    [SerializeField] InventoryDisplay inventoryDisplay;
 
     GameObject areaOfEffectObject;
     int attackSoundIndex = 0;
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     public AbilityBase[] abilities;
 
+    /*
     private void UpdateInventory()
     {
         string message = "";
@@ -72,14 +74,14 @@ public class PlayerController : MonoBehaviour
         else
             Debug.Log(message);
     }
-
+    */
 
     private void Start()
     {
         abilities = GetComponents<AbilityBase>();
         nearbyThings = new List<GameObject>();
         GameManager.instance.removeEnemyAction += RemoveNearbyThing;
-        UpdateInventory();
+
 
         // hack - update camra's follow script (because it's don't destroy on load now)
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Follow>().Init();
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
         inventoryLures = initialInventoryLures;
         inventoryTotems = initialInventoryTotems;
         inventoryBranches = initialInventoryBranches;
+        UpdateInventory();
     }
 
 
@@ -506,4 +509,11 @@ public class PlayerController : MonoBehaviour
         plumbob.SetActive(false);
         FindClosestThing();
     }
+
+    void UpdateInventory()
+    {
+        inventoryDisplay.UpdateValues(inventoryLures, inventoryBranches, inventoryTotems);
+    }
+
 }
+
