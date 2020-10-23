@@ -15,6 +15,7 @@ TagManager:
   - Loot
   - Totem
   - WanderPoint
+  - BlockingTree
   layers:
   - Default
   - TransparentFX
