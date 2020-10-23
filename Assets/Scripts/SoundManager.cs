@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public enum Music { None = -1, Title, Gameplay, Takedown };
+//public enum Music { None = -1, Title, Gameplay, Takedown };
 
 /**
  * Usage:
@@ -15,35 +15,18 @@ public enum Music { None = -1, Title, Gameplay, Takedown };
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager mainAudio;
-    Music currentMusic = Music.None;
-    bool isMusicSubdued = false;
-    bool isMusicMuted = false;
+    //Music currentMusic = Music.None;
+    // bool isMusicSubdued = false;
+    // bool isMusicMuted = false;
 
-    [SerializeField] float subduedVolume = 0.3f;
+    //   [SerializeField] float subduedVolume = 0.3f;
 
-    public string music;
+    public AudioSource BGM;
 
-
-
-
-    void Awake()
-    {
-        if (mainAudio != null)
-        {
-            DestroyImmediate(this);
-            return;
-        }
-        else
-        {
-            mainAudio = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-
-    }
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
 
     }
 
@@ -52,8 +35,15 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    public void ToggleMusic()
+    public void ChangeBGM(AudioClip music)
     {
-        Debug.Log("toggle deez nuts");
+       // if(BGM.clip.name == music.name)
+        ///{
+          //  return;
+        //}
+
+        BGM.Stop();
+        BGM.clip = music;
+        BGM.Play();
     }
 }

@@ -46,11 +46,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fovZoomIn = 60;
     [SerializeField] float fovZoomOut = 90;
 
+
     Vector3[] wanderPoints;
 
     Camera mainCamera;
 
-    AudioSource audioSource;
+    AudioSource audioSource; 
+    public AudioClip TitleMusic;
+    public AudioClip GameplayMusic;
+
+
+
 
     // Playtesting
     bool useCylinder = false;
@@ -89,6 +95,10 @@ public class GameManager : MonoBehaviour
     {
         Init();
         SetState(GameState.Start);
+        audioSource.clip = TitleMusic;
+        audioSource.Play();
+        
+
     }
 
 
@@ -196,10 +206,10 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             if (Input.GetButtonDown("Button5")) // right bumper
                 ToggleFOV();
-            if (Input.GetKeyDown(KeyCode.Home))
+           // if (Input.GetKeyDown(KeyCode.Home))
                 //  SoundManager.mainAudio.PlayOneShot("event:/Placeholder SFX");
-                if (Input.GetKeyDown(KeyCode.M))
-                    SoundManager.mainAudio.ToggleMusic();
+               // if (Input.GetKeyDown(KeyCode.M))
+               //      SoundManager.mainAudio.ToggleMusic();
 
             float analogZoom = Input.GetAxis("Left Trigger") - Input.GetAxis("Right Trigger") + Input.GetAxis("Right Joystick Vertical");
             if (analogZoom > 0.01 || analogZoom < -0.01)
@@ -264,16 +274,17 @@ public class GameManager : MonoBehaviour
         miniMap.SetActive(state == GameState.Playing);
         hud.SetActive(state == GameState.Playing);
 
-        Music music =
-            state == GameState.Start ? Music.Title :
-            state == GameState.Help ? Music.Title :
-            state == GameState.Playing ? Music.Gameplay :
-            state == GameState.Paused ? Music.Gameplay :
-            Music.None;
+        // Music music =
+        //   state == GameState.Start ? Music.Title :
+        // state == GameState.Help ? Music.Title :
+        //s//tate == GameState.Playing ? Music.Gameplay :
+        //state == GameState.Paused ? Music.Gameplay :
+        //Music.None;
 
 
-      //  SoundManager.instance?.SetSubduedMusic(state == GameState.Paused);
-      //  SoundManager.instance?.PlayMusic(music);
+        //  SoundManager.instance?.SetSubduedMusic(state == GameState.Paused);
+        audioSource.clip = GameplayMusic;
+        audioSource.Play();
 
     }
 

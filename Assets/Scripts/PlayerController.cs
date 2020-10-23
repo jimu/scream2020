@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip sfxLooting;
     [SerializeField] AudioClip sfxLootComplete;
     [SerializeField] AudioClip[] attackSounds;
+    [SerializeField] AudioClip sfxMovement;
     
     GameObject areaOfEffectObject;
     int attackSoundIndex = 0;
@@ -77,7 +78,13 @@ public class PlayerController : MonoBehaviour
         {
             float deltaX = Input.GetAxis("Horizontal") * playerSpeed * Time.deltaTime;
             float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
+           
             transform.Translate(deltaX, 0f, deltaZ);
+            if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+                {
+                GameManager.instance.PlayOneShot(sfxMovement);
+            }
+
 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Button0"))
                 OnInteractButtonPressed();
