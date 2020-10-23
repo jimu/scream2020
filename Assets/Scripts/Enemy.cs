@@ -73,6 +73,10 @@ public class Enemy : MonoBehaviour
         moveTo.CancelWander();
     }
 
+    public int GetFear()
+    {
+        return fear;
+    }
 
     private void Update()
     {
@@ -171,7 +175,11 @@ public class Enemy : MonoBehaviour
         GameManager.instance.GetComponent<AudioSource>().PlayOneShot(sfxDeath);
         gameObject.tag = "Corpse";
         GameManager.instance.RemoveEnemy(this);
+        fearIcon.gameObject.SetActive(false);
         Destroy(fearIcon);
+        GameManager.instance.ResetInteractionIcon();
+        Debug.Log("RESET II");
+
 
         if (animator == null)
         {   // cylinder

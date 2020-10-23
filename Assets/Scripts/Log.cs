@@ -25,5 +25,8 @@ public class Log : MonoBehaviour
         GetComponent<NavMeshObstacle>().enabled = true;
         GameManager.instance.GetComponent<AudioSource>().PlayOneShot(sfx);
         GameObject.FindGameObjectWithTag("MiniMap").GetComponent<MiniMap2>().UpdateLogs();
+        tag = "BlockingTree";
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().RemoveThing(gameObject);
+
     }
 }

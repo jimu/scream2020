@@ -18,7 +18,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip sfxLootComplete;
     [SerializeField] AudioClip[] attackSounds;
     [SerializeField] AudioClip sfxMovement;
-    
+
+    [SerializeField] InteractionIcon interactionIcon;
+    [SerializeField] Sprite interactionIconTree;
+
     GameObject areaOfEffectObject;
     int attackSoundIndex = 0;
 
@@ -32,16 +35,13 @@ public class PlayerController : MonoBehaviour
     float lootFinishTime;
     GameObject enemyBeingLooted;
 
-    List<GameObject> nearbyEnemies;
+    List<GameObject> nearbyThings;
     GameObject closestObject = null;
 
     [SerializeField] UnityEngine.UI.Text inventoryText = null;
 
 
-
-
     public AbilityBase[] abilities;
-
 
     private void UpdateInventory()
     {
@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         abilities = GetComponents<AbilityBase>();
-        nearbyEnemies = new List<GameObject>();
-        GameManager.instance.removeEnemyAction += RemoveNearbyEnemy;
+        nearbyThings = new List<GameObject>();
+        GameManager.instance.removeEnemyAction += RemoveNearbyThing;
         UpdateInventory();
 
         // hack - update camra's follow script (because it's don't destroy on load now)
@@ -81,10 +81,9 @@ public class PlayerController : MonoBehaviour
            
             transform.Translate(deltaX, 0f, deltaZ);
             if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
-                {
+            {
                 GameManager.instance.PlayOneShot(sfxMovement);
             }
-
 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Button0"))
                 OnInteractButtonPressed();
@@ -155,12 +154,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void DamageEnemyObject(GameObject enemyObject, int hits)
     {
-
         enemyObject.GetComponent<Enemy>()?.Damage(hits);
-        FindClosestEnemy();
+        FindClosestThing();
     }
+
 
     void AttackMissed()
     {
@@ -170,6 +170,8 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.GetComponent<AudioSource>().PlayOneShot(attackSounds[attackSoundIndex]);
         attackSoundIndex = (attackSoundIndex + 1) % attackSounds.Length;
     }
+
+
     void AttackDepricated(Enemy enemy)
     {
 
@@ -190,56 +192,112 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FindClosestEnemy()
+    public void ClearClosestObject()
+    {
+        closestObject = null;
+        plumbob.transform.SetParent(null, false);
+
+    }
+
+    // method - rename closestEnemies to deadzone, defined by player's collider
+
+    // Deadzone for attack.  Uses closest enemies array (never should have optimized this)
+    // closest enemies uses collider.  need to prioritieze functions - kill over loot
+    private void FindClosestThing()
     {
         Vector3 pos = transform.position;
         float closestDistance = float.MaxValue;
+        float highestPriority = int.MinValue;
         closestObject = null;
-        foreach (GameObject o in nearbyEnemies)
+
+
+        foreach (GameObject o in nearbyThings)
         {
-            float distance = Vector3.Distance(pos, o.transform.position);
-            if (distance < closestDistance)
+            if (o != null)
             {
-                closestDistance = distance;
-                closestObject = o;
+                float distance = Vector3.Distance(pos, o.transform.position);
+                int priority =
+                    tag == "Enemy" ? 10 :
+                    tag == "Log" ? 8 :
+                    tag == "Loot" ? 6 :
+                    tag == "Corpse" ? 4 : 2;
+
+                if (priority > highestPriority)
+                {
+                    closestDistance = distance;
+                    closestObject = o;
+                    highestPriority = priority;
+                }
+                else if (priority == highestPriority && distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestObject = o;
+                    highestPriority = priority;
+                }
             }
+
+            Transform plumbobParent = plumbob.transform.parent;
+
+            // remove plumbob
+            if (closestObject == null && plumbobParent != null)
+            {
+                plumbob.transform.SetParent(null, false);
+                interactionIcon.gameObject.SetActive(false);
+            }
+
+            else if (closestObject != null && plumbobParent != closestObject.transform)
+            {
+                plumbob.transform.SetParent(closestObject.transform, false);
+                GameManager.instance.PlayOneShotIfGamePlay(sfxSnapToTarget);
+                //Debug.Log("Selected: " + closestObject.name);
+                interactionIcon.Follow(closestObject.transform, interactionIconTree);
+                interactionIcon.gameObject.SetActive(true);
+            }
+
+
+
+            plumbob.SetActive(closestObject != false);
+
         }
-
-        Transform parent = plumbob.transform.parent;
-
-        if (closestObject == null && parent != null)
-            plumbob.transform.SetParent(null, false);
-
-        if (closestObject != null && parent != closestObject.transform)
-        {
-            plumbob.transform.SetParent(closestObject.transform, false);
-            GameManager.instance.PlayOneShotIfGamePlay(sfxSnapToTarget);
-            //Debug.Log("Selected: " + closestObject.name);
-        }
-
-        plumbob.SetActive(closestObject != false);
-
     }
+
+
+    //#####################################################################################
+    // compile everything here.  prioritize contents when interacting
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Adding " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Enemy"))
-            nearbyEnemies.Add(other.gameObject);
-        FindClosestEnemy();
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        //Debug.Log("Remove " + other.gameObject.name);
-        GameObject o = other.gameObject;
-        if (o.CompareTag("Enemy"))
-            nearbyEnemies.Remove(o);
-        FindClosestEnemy();
+        string tag = other.gameObject.tag;
+
+        if ((tag == "Enemy" && other.gameObject.GetComponent<Enemy>().GetFear() > 0) || tag == "Corpse" || tag == "Loot" || tag == "Log")
+        {
+            //Debug.Log("Add " + other.gameObject.name + " (" + tag + ")");
+            nearbyThings.Add(other.gameObject);
+            FindClosestThing();
+        }
     }
 
-    void RemoveNearbyEnemy(Enemy enemy)
+    private void OnTriggerExit(Collider other)
     {
-        nearbyEnemies.Remove(enemy.gameObject);
+        string tag = other.gameObject.tag;
+
+        if (tag == "Enemy" || tag == "Corpse" || tag == "Loot" || tag == "Log")
+        {
+            //Debug.Log("Remove " + other.gameObject.name + " (" + tag + ")");
+            nearbyThings.Remove(other.gameObject);
+            FindClosestThing();
+        }
+    }
+
+    public void RemoveThing(GameObject o)
+    {
+        nearbyThings.Remove(o);
+
+    }
+
+    void RemoveNearbyThing(Enemy enemy)
+    {
+        nearbyThings.Remove(enemy.gameObject);
     }
 
 
@@ -254,7 +312,7 @@ public class PlayerController : MonoBehaviour
     {
         if (inventoryBranches > 0)
         {
-            Debug.Log("Branch Pressed!");
+            //Debug.Log("Branch Pressed!");
             GetComponent<DropBranchAbility>().TriggerAbility();
             inventoryBranches--;
             UpdateInventory();
@@ -266,12 +324,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     public void OnTotemButtonPressed()
     {
         HideAreaOfEffect();
         if (inventoryTotems > 0)
         {
-            Debug.Log("Totem Pressed!");
+            //Debug.Log("Totem Pressed!");
             GetComponent<DropTotemAbility>().TriggerAbility();
             inventoryTotems--;
             UpdateInventory();
@@ -283,6 +342,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     public void OnLureButtonPressed()
     {
         HideAreaOfEffect();
@@ -292,7 +352,6 @@ public class PlayerController : MonoBehaviour
             GetComponent<DropLureAbility>().TriggerAbility();
             inventoryLures--;
             UpdateInventory();
-
         }
         else
         {
@@ -322,5 +381,14 @@ public class PlayerController : MonoBehaviour
         inventoryLures++;
         inventoryTotems++;
         UpdateInventory();
+    }
+
+
+    public void ResetInteractionIcon()
+    {
+        interactionIcon.gameObject.SetActive(false);
+        plumbob.transform.parent = null;
+        plumbob.SetActive(false);
+        FindClosestThing();
     }
 }

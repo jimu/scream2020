@@ -373,4 +373,10 @@ public class GameManager : MonoBehaviour
     }
 
 
+
+    public void ResetInteractionIcon()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ClearClosestObject();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ResetInteractionIcon();
+    }
 }
