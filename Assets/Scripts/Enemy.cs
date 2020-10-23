@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         moveTo = GetComponent<MoveTo>();
+
+        animator.SetFloat("Speed", speed / 2);
     }
 
     private void Start()
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
         SetFear(fear);
         if (isWandering)
             SetRandomWanderTimeAndDestination();
+        previousPosition = transform.position;
     }
 
     void SetRandomWanderTimeAndDestination()
@@ -78,12 +81,29 @@ public class Enemy : MonoBehaviour
         return fear;
     }
 
+
+    Vector3 previousPosition;
+
     private void Update()
     {
-        if (GameManager.instance.GetGameState() == GameState.Playing && fearIcon != null)
-            fearIcon.MoveTo(transform.position);
-        if (isWandering && Time.timeSinceLevelLoad > wanderExpireTime)
-            SetRandomWanderTimeAndDestination();
+
+
+        if (GameManager.instance.GetGameState() == GameState.Playing && Time.deltaTime > 0)
+        {
+            if (fearIcon != null)
+                fearIcon.MoveTo(transform.position);
+            if (isWandering && Time.timeSinceLevelLoad > wanderExpireTime)
+                SetRandomWanderTimeAndDestination();
+
+
+
+            Vector3 curMove = transform.position - previousPosition;
+            float curSpeed = curMove.magnitude / Time.deltaTime;
+            previousPosition = transform.position;
+            //Debug.Log("Speed: " + curSpeed + ":   " + curMove.magnitude + " / " + Time.deltaTime);
+            animator.SetFloat("Speed", Math.Max(curSpeed / 2, 0.2f));
+        }
+        
     }
 
     void SetFear(int n)

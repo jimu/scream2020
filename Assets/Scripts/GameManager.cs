@@ -229,7 +229,7 @@ public class GameManager : MonoBehaviour
             if (Time.timeSinceLevelLoad > sceneDuration)
                 EndRound("Out of time");
 
-            Debug.Log("Time.timeSinceLevelLoad:" + Time.timeSinceLevelLoad + "  sd:" + sceneDuration);
+            //Debug.Log("Time.timeSinceLevelLoad:" + Time.timeSinceLevelLoad + "  sd:" + sceneDuration);
 
 
             if (Time.timeSinceLevelLoad > wanderPhaseDuration)
