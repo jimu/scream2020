@@ -30219,7 +30219,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.546
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -38063,7 +38063,7 @@ GameObject:
   - component: {fileID: 1422248696}
   - component: {fileID: 1422248695}
   m_Layer: 0
-  m_Name: Background Music
+  m_Name: AmbienceSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38079,11 +38079,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 4ac4a67b90c4b455097cceb42299fe88, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.664
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -47673,66 +47673,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2036177300}
     m_Modifications:
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -11.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
-        type: 3}
-      propertyPath: m_Name
-      value: CamperBoss
-      objectReference: {fileID: 0}
     - target: {fileID: 369621997, guid: 9f132070cb06bc644827b929542ed311, type: 3}
       propertyPath: m_Controller
       value: 
@@ -47801,6 +47741,66 @@ PrefabInstance:
       propertyPath: sfxHurt
       value: 
       objectReference: {fileID: 8300000, guid: 84e81259eb3fa4a9392fe8bc3ea4ba8a, type: 3}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320916, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448774616168320936, guid: fcde0e15ffdb1564c8b5c2a90da9f246,
+        type: 3}
+      propertyPath: m_Name
+      value: CamperBoss
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f132070cb06bc644827b929542ed311, type: 3}
 --- !u!1 &1868770915
