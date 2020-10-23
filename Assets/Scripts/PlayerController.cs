@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] InteractionIcon interactionIcon;
     [SerializeField] Sprite interactionIconTree;
+    [SerializeField] bool isInteractionDirty = true;
 
     GameObject areaOfEffectObject;
     int attackSoundIndex = 0;
@@ -37,9 +38,14 @@ public class PlayerController : MonoBehaviour
 
     List<GameObject> nearbyThings;
     GameObject closestObject = null;
+    GameObject lastClosestObject = null;
 
     [SerializeField] UnityEngine.UI.Text inventoryText = null;
 
+    public void SetDirty()
+    {
+        isInteractionDirty = true;
+    }
 
     public AbilityBase[] abilities;
 
@@ -76,6 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.GetGameState() == GameState.Playing)
         {
+            FindClosestThing();
             float deltaX = Input.GetAxis("Horizontal") * playerSpeed * Time.deltaTime;
             float deltaZ = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
            
@@ -99,6 +106,9 @@ public class PlayerController : MonoBehaviour
                 OnLureButtonPressed();
             if (Input.GetKeyDown(KeyCode.Q))
                 abilities[0].TriggerAbility();
+
+            if (Input.GetKeyDown(KeyCode.P))
+                Time.timeScale = Time.timeScale > 0 ? 0 : 0.5f;
 
             if (isLooting)
             {
@@ -134,11 +144,13 @@ public class PlayerController : MonoBehaviour
 
     void Interact()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+       // RaycastHit hit;
+       // if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+       if (closestObject != null)
         {
-            GameObject o = hit.collider.gameObject;
-            Debug.Log("Hit: " + o.name);
+            GameObject o = closestObject;
+       //     GameObject o = hit.collider.gameObject;
+           // Debug.Log("Hit: " + o.name);
             if (o.CompareTag("Enemy"))
                 DamageEnemyObject(o, 2);
             else if (o.CompareTag("Corpse"))
@@ -198,18 +210,101 @@ public class PlayerController : MonoBehaviour
         plumbob.transform.SetParent(null, false);
 
     }
+    int n = 0;
+    private void FindClosestThing()
+    {
+       // Debug.Log("FindClosestThing");
+        Vector3 pos = transform.position;
+        pos.y = 0f;
+       // string text = "INTERACTION PANEL (" + (n++) + ")\n";
+        //GameManager.instance.SetInteractionText(text);
+
+        float closestDistance = float.MaxValue;
+        float highestPriority = 0;
+        closestObject = null;
+        Collider[] cols = Physics.OverlapSphere(pos, 4f);
+       // text += cols.Length + " objects found\n";
+       // GameManager.instance.SetInteractionText(text);
+
+        foreach (Collider collider in Physics.OverlapSphere(pos, 2f)) // todo layermask
+        {
+            GameObject o = collider.gameObject;
+            float distance = Vector3.Distance(pos, o.transform.position);
+            string otag = o.tag == "Enemy" && o.GetComponent<Enemy>().GetFear() <= 0 ? "none" : o.tag;
+
+            int priority =
+                otag == "Enemy" ? 10 :
+                otag == "Log" ? 8 :
+                otag == "Loot" ? 6 :
+                otag == "Corpse" ? 4 : -1;
+
+            if (priority > highestPriority)
+            {
+                closestDistance = distance;
+                closestObject = o;
+                highestPriority = priority;
+            }
+            else if (priority == highestPriority && distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestObject = o;
+                highestPriority = priority;
+            }
+            //text += o.name + ":" + o.tag + " (" + priority + ")\n";
+        }
+
+
+      //  GameManager.instance.SetInteractionText(text);
+
+
+        if (closestObject != lastClosestObject)
+        {
+            lastClosestObject = closestObject;
+            //Transform plumbobParent = plumbob.transform.parent;
+
+            // remove plumbob if there are no objects at all
+            /*
+            if (closestObject == null && plumbobParent != null)
+            {
+                plumbob.transform.SetParent(null, false);
+                interactionIcon.gameObject.SetActive(false);
+            }*/
+            if (closestObject == null)
+            {
+                interactionIcon.gameObject.SetActive(false);
+            }
+            else if (closestObject != null /* &&  */)
+            {
+ //               if (plumbobParent != closestObject.transform)
+   //                 plumbob.transform.SetParent(closestObject.transform, false);
+
+                GameManager.instance.PlayOneShotIfGamePlay(sfxSnapToTarget);
+                //Debug.Log("Selected: " + closestObject.name);
+                interactionIcon.Follow(closestObject.transform, interactionIconTree);
+                interactionIcon.gameObject.SetActive(true);
+            }
+     //       plumbob.SetActive(closestObject != false);
+        }
+    }
+
 
     // method - rename closestEnemies to deadzone, defined by player's collider
 
     // Deadzone for attack.  Uses closest enemies array (never should have optimized this)
     // closest enemies uses collider.  need to prioritieze functions - kill over loot
-    private void FindClosestThing()
+
+    // out: member property closestThing
+    private void FindClosestThing0()
     {
+
+
+
         Vector3 pos = transform.position;
         float closestDistance = float.MaxValue;
         float highestPriority = int.MinValue;
         closestObject = null;
 
+        string text = "INTERACITON PANEL\n";
 
         foreach (GameObject o in nearbyThings)
         {
@@ -234,31 +329,34 @@ public class PlayerController : MonoBehaviour
                     closestObject = o;
                     highestPriority = priority;
                 }
+                text = o.name + ":" + o.tag + "\n";
             }
-
-            Transform plumbobParent = plumbob.transform.parent;
-
-            // remove plumbob
-            if (closestObject == null && plumbobParent != null)
-            {
-                plumbob.transform.SetParent(null, false);
-                interactionIcon.gameObject.SetActive(false);
-            }
-
-            else if (closestObject != null && plumbobParent != closestObject.transform)
-            {
-                plumbob.transform.SetParent(closestObject.transform, false);
-                GameManager.instance.PlayOneShotIfGamePlay(sfxSnapToTarget);
-                //Debug.Log("Selected: " + closestObject.name);
-                interactionIcon.Follow(closestObject.transform, interactionIconTree);
-                interactionIcon.gameObject.SetActive(true);
-            }
-
-
-
-            plumbob.SetActive(closestObject != false);
-
+            else
+                text = "NULL\n";
         }
+
+        Transform plumbobParent = plumbob.transform.parent;
+
+        // remove plumbob
+        if (closestObject == null && plumbobParent != null)
+        {
+            plumbob.transform.SetParent(null, false);
+            interactionIcon.gameObject.SetActive(false);
+        }
+
+        else if (closestObject != null && plumbobParent != closestObject.transform)
+        {
+            plumbob.transform.SetParent(closestObject.transform, false);
+            GameManager.instance.PlayOneShotIfGamePlay(sfxSnapToTarget);
+            //Debug.Log("Selected: " + closestObject.name);
+            interactionIcon.Follow(closestObject.transform, interactionIconTree);
+            interactionIcon.gameObject.SetActive(true);
+        }
+
+
+
+        plumbob.SetActive(closestObject != false);
+        GameManager.instance.SetInteractionText(text);
     }
 
 
@@ -303,7 +401,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteractButtonPressed()
     {
-        Debug.Log("Interact Pressed!");
+       // Debug.Log("Interact Pressed!");
         Interact();
     }
 

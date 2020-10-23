@@ -27,6 +27,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image borderGraphic;
     [SerializeField] float wanderPhaseDuration = 60.0f;
 
+    [SerializeField] Text interactionPanelText;
+
+    public void SetInteractionText(string t)
+    {
+        Debug.Log("SetInteractionText(" + t + ")");
+        interactionPanelText.text = t;
+    }
+
+    public void SetDirty()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().SetDirty();
+    }
 
     bool miniMapVisible = true;
 
@@ -97,8 +109,6 @@ public class GameManager : MonoBehaviour
         SetState(GameState.Start);
         audioSource.clip = TitleMusic;
         audioSource.Play();
-        
-
     }
 
 
@@ -266,7 +276,7 @@ public class GameManager : MonoBehaviour
         this.state = state;
 
         Time.timeScale = state == GameState.Playing ? 1f : 0f;
-        Debug.Log("  Time.timeScale=" + Time.timeScale);
+        //Debug.Log("  Time.timeScale=" + Time.timeScale);
 
         startPanel.SetActive(state == GameState.Start);
         helpPanel.SetActive(state == GameState.Help || state == GameState.Paused);
@@ -345,7 +355,7 @@ public class GameManager : MonoBehaviour
 
     public void StartProgressBar(float duration)
     {
-        Debug.Log("StartProgressBar(" + duration + ")");
+        //Debug.Log("StartProgressBar(" + duration + ")");
         progressBar.SetActive(true);
         progressBar.GetComponent<ProgressBar>().StartProgress(duration);
     }
@@ -378,5 +388,6 @@ public class GameManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ClearClosestObject();
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ResetInteractionIcon();
+        SetDirty();
     }
 }

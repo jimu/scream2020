@@ -30,10 +30,14 @@ public class InteractionIcon : MonoBehaviour
             transform.position = follow.position + offset;
     }
 
+    private void OnDisable()
+    {
+        treeUIIcon.SetActive(false);
+    }
 
     public void Follow(Transform who, Sprite sprite)
     {
-        Debug.Log("Follow: " + sprite.name + "  sr=");
+        //Debug.Log("Follow: " + sprite.name + "  sr=");
         //spriteRenderer.size = new Vector2(n * 1.1f / 3, 1);
         if (follow != who)
         {
@@ -53,6 +57,7 @@ public class InteractionIcon : MonoBehaviour
                 offsetTree;
 
             treeUIIcon.SetActive(who.tag == "Log");
+
             //Debug.Break();
         }
     }
