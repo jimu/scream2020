@@ -32,17 +32,47 @@ Interactions (keyboard space) - some items can be interacted with, these include
 
 # Development Screenshots
 ![Screenshot 01](https://www.jimu.net/images/scream2020/cuddlebearv2.jpg)  
+
+
 ![Screenshot 02](https://www.jimu.net/images/scream2020/navmap_screenshot2.jpg)  
+
+
 ![Screenshot 03](https://www.jimu.net/images/scream2020/scream2020ju3.png)  
+
+
 ![Screenshot 04](https://www.jimu.net/images/scream2020/scream2020ju5.png)  
+
+
 ![Screenshot 05](https://www.jimu.net/images/scream2020/scream2020ju10.jpg)  
+
+
 ![Screenshot 06](https://www.jimu.net/images/scream2020/cuddlebearv2inengine.PNG)  
+
+
 ![Screenshot 07](https://www.jimu.net/images/scream2020/IMG_20201019_073132.jpg)  
-![Screenshot 08](https://www.jimu.net/images/scream2020/level1buildover.jpg)  
+
+
+
+![Screenshot 08](https://www.jimu.net/images/scream2020/level1buildover.PNG)  
+
+
+
 ![Screenshot 09](https://www.jimu.net/images/scream2020/mapdemo1.PNG)  
+
+
 ![Screenshot 10](https://www.jimu.net/images/scream2020/mapsample2.PNG)  
+
+
 ![Screenshot 11](https://www.jimu.net/images/scream2020/ohmy.PNG)  
+
+
 ![Screenshot 12](https://www.jimu.net/images/scream2020/totem.PNG)  
+
+
 ![Screenshot 14](https://www.jimu.net/images/scream2020/25.png)  
+
+
 ![Title Card](https://img.itch.zone/aW1nLzQ0NjM2OTUucG5n/347x500/TIntZe.png)
+
+
 
